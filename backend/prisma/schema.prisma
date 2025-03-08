@@ -18,38 +18,29 @@ model User {
   email           String         @unique
   name            String
   role            Role
-  branches        BranchOnUser[] // Many-to-many for doctors & admins
   appointments    Appointment[]  @relation("DoctorAppointments")
   doctorProfile   DoctorProfile?
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
-  // Optimized indexes
-  @@index([email, role])
+  @@index([email])
   @@index([createdAt])
 }
 
-model Branch {
-  id             String       @id @default(uuid())
-  name           String
-  address        String
-  phone          String
-  users          BranchOnUser[]
-  services       Service[]
-  appointments   Appointment[]
-  admin          User?        @relation(fields: [adminId], references: [id]) // Each branch has one admin
-  adminId        String?      @unique
-  
-  @@index([name])
-  @@index([address])
-}
+model Patient {
+  id         String         @id @default(uuid())
+  name       String
+  email      String?        @unique // Optional but recommended
+  phone      String         @unique
+  dateOfBirth DateTime?
+  gender     Gender?
+  address    String?
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  appointments Appointment[]
 
-model BranchOnUser {
-  userId   String
-  branchId String
-  user     User   @relation(fields: [userId], references: [id])
-  branch   Branch @relation(fields: [branchId], references: [id])
-  @@id([userId, branchId]) // Composite primary key for many-to-many relation
+  @@index([email])
+  @@index([phone])
 }
 
 model Appointment {
@@ -57,24 +48,19 @@ model Appointment {
   startTime    DateTime
   endTime      DateTime
   status       AppointmentStatus @default(SCHEDULED)
-  patientName  String
-  patientPhone String
-  patientEmail String
+  patient      Patient?          @relation(fields: [patientId], references: [id])
+  patientId    String?
   doctor       User              @relation("DoctorAppointments", fields: [doctorId], references: [id])
   doctorId     String
-  branch       Branch            @relation(fields: [branchId], references: [id])
-  branchId     String
-  services     Service[]
+  services     Service[]  @relation("AppointmentServices")
   notes        String?
   source       AppointmentSource @default(WEB_FORM)
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
 
-  // Critical indexes for common queries
   @@index([doctorId, startTime])
-  @@index([branchId, startTime])
   @@index([status, startTime])
-  @@index([patientPhone])
+  @@index([patientId])
 }
 
 model Service {
@@ -82,7 +68,8 @@ model Service {
   name        String  @unique
   duration    Int     // Minutes
   description String?
-  branches    Branch[] // Available at which branches
+
+  appointments Appointment[] @relation("AppointmentServices")
 
   @@index([name])
   @@index([duration])
@@ -93,23 +80,31 @@ model DoctorProfile {
   user          User     @relation(fields: [userId], references: [id])
   userId        String   @unique
   availability  Availability[]
-  timePerPatient Int     @default(30) // Default 30 mins per patient
+  timePerPatient Int     @default(30)
 }
 
 model Availability {
   id         String   @id @default(uuid())
-  doctor     User     @relation(fields: [doctorId], references: [id])
-  doctorId   String
-  startTime  DateTime // Inclusive
-  endTime    DateTime // Exclusive
-  exceptions DateTime[]      // Dates when this availability doesn't apply
+  doctor     DoctorProfile @relation(fields: [doctorProfileId], references: [id])
+  doctorProfileId  String
+  startTime  DateTime
+  endTime    DateTime
+  exceptions AvailabilityException[]
   
-  @@index([doctorId, startTime])
+  @@index([doctorProfileId, startTime])
+}
+
+model AvailabilityException {
+  id             String   @id @default(uuid())
+  availability   Availability @relation(fields: [availabilityId], references: [id])
+  availabilityId String
+  exceptionDate  DateTime
+
+  @@index([availabilityId])
 }
 
 enum Role {
   SUPERADMIN
-  BRANCH_ADMIN
   DOCTOR
 }
 
@@ -127,4 +122,10 @@ enum AppointmentSource {
   PHONE
   WALK_IN
   RECOMMENDATION
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
