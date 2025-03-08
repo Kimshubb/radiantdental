@@ -37,7 +37,6 @@ model Branch {
   users          BranchOnUser[]
   services       Service[]
   appointments   Appointment[]
-  openingHours   OpeningHour[]
   admin          User?        @relation(fields: [adminId], references: [id]) // Each branch has one admin
   adminId        String?      @unique
   
