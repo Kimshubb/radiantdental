@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String         @id @default(uuid())
+  email             String         @unique
+  password          String
+  name              String
+  role              Role           
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  branches          Branch[]       @relation("UserBranches") // Many-to-many with branches
+  appointments      Appointment[]  @relation("DoctorAppointments")
+  doctorProfile     DoctorProfile?
+  managedBranches   Branch[]       @relation("BranchAdmins") // For ADMIN users
+  createdPosts      Blog[]        
+  patientProfile    Patient?       @relation("PatientUser") // If users can also be patients
+}
+
+model Branch {
+  id             String       @id @default(uuid())
+  name           String
+  address        String
+  city           String
+  state          String
+  zipCode        String
+  phone          String
+  email          String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  users          User[]       @relation("UserBranches") // Many-to-many
+  services       Service[]
+  administrators User[]       @relation("BranchAdmins")
+  appointments   Appointment[]
+}
+
+model Appointment {
+  id           String            @id @default(uuid())
+  startTime    DateTime
+  endTime      DateTime
+  status       AppointmentStatus @default(SCHEDULED)
+  patient      Patient           @relation(fields: [patientId], references: [id])
+  patientId    String
+  doctor       User              @relation("DoctorAppointments", fields: [doctorId], references: [id])
+  doctorId     String
+  branch       Branch            @relation(fields: [branchId], references: [id])
+  branchId     String
+  notes        String?
+  confirmToken String?           @unique
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+model Patient {
+  id        String   @id @default(uuid())
+  user      User     @relation("PatientUser", fields: [userId], references: [id])
+  userId    String   @unique
+  phone     String
+  address   String?
+  appointments Appointment[]
+}
+
+model DoctorProfile {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  specialty String
+  experience Int
+  availability String?
+}
+
+model Blog {
+  id       String  @id @default(uuid())
+  title    String
+  content  String
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  SUPER_ADMIN
+  BRANCH_ADMIN
+  DOCTOR
+  PATIENT
+  STAFF
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CANCELED
+  RESCHEDULED
+  COMPLETED
+}
+
