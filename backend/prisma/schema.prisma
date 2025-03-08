@@ -9,41 +9,48 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id                String         @id @default(uuid())
-  email             String         @unique
-  password          String
-  name              String
-  role              Role           
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
-  branches          Branch[]       @relation("UserBranches") // Many-to-many with branches
-  appointments      Appointment[]  @relation("DoctorAppointments")
-  doctorProfile     DoctorProfile?
-  managedBranches   Branch[]       @relation("BranchAdmins") // For ADMIN users
-  createdPosts      Blog[]        
-  patientProfile    Patient?       @relation("PatientUser") // If users can also be patients
+  id              String         @id @default(uuid())
+  email           String         @unique
+  name            String
+  role            Role
+  branches        BranchOnUser[] // Many-to-many for doctors & admins
+  appointments    Appointment[]  @relation("DoctorAppointments")
+  doctorProfile   DoctorProfile?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Optimized indexes
+  @@index([email, role])
+  @@index([createdAt])
 }
 
 model Branch {
   id             String       @id @default(uuid())
   name           String
   address        String
-  city           String
-  state          String
-  zipCode        String
   phone          String
-  email          String?
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  users          User[]       @relation("UserBranches") // Many-to-many
+  users          BranchOnUser[]
   services       Service[]
-  administrators User[]       @relation("BranchAdmins")
   appointments   Appointment[]
+  openingHours   OpeningHour[]
+  admin          User?        @relation(fields: [adminId], references: [id]) // Each branch has one admin
+  adminId        String?      @unique
+  
+  @@index([name])
+  @@index([address])
+}
+
+model BranchOnUser {
+  userId   String
+  branchId String
+  user     User   @relation(fields: [userId], references: [id])
+  branch   Branch @relation(fields: [branchId], references: [id])
+  @@id([userId, branchId]) // Composite primary key for many-to-many relation
 }
 
 model Appointment {
@@ -51,55 +58,74 @@ model Appointment {
   startTime    DateTime
   endTime      DateTime
   status       AppointmentStatus @default(SCHEDULED)
-  patient      Patient           @relation(fields: [patientId], references: [id])
-  patientId    String
+  patientName  String
+  patientPhone String
+  patientEmail String
   doctor       User              @relation("DoctorAppointments", fields: [doctorId], references: [id])
   doctorId     String
   branch       Branch            @relation(fields: [branchId], references: [id])
   branchId     String
+  services     Service[]
   notes        String?
-  confirmToken String?           @unique
+  source       AppointmentSource @default(WEB_FORM)
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
+
+  // Critical indexes for common queries
+  @@index([doctorId, startTime])
+  @@index([branchId, startTime])
+  @@index([status, startTime])
+  @@index([patientPhone])
 }
 
-model Patient {
-  id        String   @id @default(uuid())
-  user      User     @relation("PatientUser", fields: [userId], references: [id])
-  userId    String   @unique
-  phone     String
-  address   String?
-  appointments Appointment[]
+model Service {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  duration    Int     // Minutes
+  description String?
+  branches    Branch[] // Available at which branches
+
+  @@index([name])
+  @@index([duration])
 }
 
 model DoctorProfile {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String   @unique
-  specialty String
-  experience Int
-  availability String?
+  id            String   @id @default(uuid())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String   @unique
+  availability  Availability[]
+  timePerPatient Int     @default(30) // Default 30 mins per patient
 }
 
-model Blog {
-  id       String  @id @default(uuid())
-  title    String
-  content  String
-  createdAt DateTime @default(now())
+model Availability {
+  id         String   @id @default(uuid())
+  doctor     User     @relation(fields: [doctorId], references: [id])
+  doctorId   String
+  startTime  DateTime // Inclusive
+  endTime    DateTime // Exclusive
+  exceptions DateTime[]      // Dates when this availability doesn't apply
+  
+  @@index([doctorId, startTime])
 }
 
 enum Role {
-  SUPER_ADMIN
+  SUPERADMIN
   BRANCH_ADMIN
   DOCTOR
-  PATIENT
-  STAFF
 }
 
 enum AppointmentStatus {
   SCHEDULED
-  CANCELED
+  CONFIRMED
+  CANCELLED
   RESCHEDULED
   COMPLETED
+  NO_SHOW
 }
 
+enum AppointmentSource {
+  WEB_FORM
+  PHONE
+  WALK_IN
+  RECOMMENDATION
+}
