@@ -150,7 +150,7 @@ const Footer = () => {
               </svg>
             </div>
             <Fade>
-              <span className="self-center text-2xl font-bold">DentRW</span>
+              <span className="self-center text-2xl font-bold">Radiant Dental</span>
             </Fade>
           </a>
         </div>
@@ -355,11 +355,12 @@ const Footer = () => {
         <div className="py-2 border-t text-sm px-1 flex justify-between">
 
         <div className="text-left dark:text-gray-400">
-          ©2023 - DentRW
+          {/* Copyright */}
+          © {new Date().getFullYear()} Radiant Dental Clinic. All rights reserved.
         </div>
-        <div>
+        {/*<div>
           Developed by <a className="text-blue-600 text-xs sm:text-sm mr-0 sm:mr-14" target="_blank" rel="noreferrer noopener" href="https://hbapte.vercel.app/"> Hbapte </a>
-        </div>
+        </div>*/}
         </div>
 
         
