@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: 'build' //changed from dist
-  },
+  base: '/',
   server: {
-    proxy: {
-      '/api': 'http://localhost:3000'
-    }
+    port: 3000,
+    strictPort: true,
+    host: true, // Allows external access
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  }
-})
-
+  build: {
+    outDir: 'build',
+    emptyOutDir: true, // Clears previous build
+    cssCodeSplit: true, // Extracts CSS into separate files
+    minify: 'esbuild',
+  },
+});
