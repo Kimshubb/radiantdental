@@ -26,13 +26,13 @@ jobs:
       # Install Dependencies (Frontend Only)
       - name: Install Dependencies
         run: |
-          cd frontend
+          cd client
           npm install
 
       # Build Frontend
       - name: Build Frontend
         run: |
-          cd frontend
+          cd client
           CI=false npm run build
           ls -la build # Verify that the build folder exists
 
@@ -54,7 +54,7 @@ jobs:
           # SSH into the server and deploy Radiant Dental
           ssh -i private_key.pem -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
             # Create the necessary directory if it doesn't exist
-            mkdir -p /var/www/radiantdental/frontend
+            mkdir -p /var/www/radiantdental/client
 
             # Navigate and pull latest code (optional, if you have Git on the server)
             cd /var/www/radiantdental
@@ -62,7 +62,7 @@ jobs:
           EOF
           
           # Transfer the built frontend to the server
-          scp -i private_key.pem -r frontend/build $USER@$HOST:/var/www/radiantdental/frontend
+          scp -i private_key.pem -r frontend/build $USER@$HOST:/var/www/radiantdental/client
           
           # Restart Nginx to apply changes
           ssh -i private_key.pem -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
