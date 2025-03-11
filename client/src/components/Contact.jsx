@@ -8,6 +8,7 @@ const Contact = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Clear error message after 8 seconds
   useEffect(() => {
     let timeout;
     if (error) {
@@ -21,28 +22,50 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setIsLoading(true);
-
-    emailjs
-      .sendForm(
-        "service_xisoyix",
-        "template_o8b8bzr",
-        form.current,
-        "y5LmTUdhgknXetKeT"
-      )
-      .then((result) => {
+  
+    const serviceId = service_0eng0o6;
+    const publicKey = y1WbT3USvALK2UNRP;
+    
+    const formData = new FormData(form.current);
+    const formValues = Object.fromEntries(formData.entries());
+  
+    const adminEmail = "kimanifrank209@gmail.com";
+  
+    // EmailJS Template IDs
+    const userTemplateId = template_7yzoc5b; 
+    const adminTemplateId = template_agb1pwv;
+  
+    Promise.all([
+      // Send to User
+      emailjs.send(serviceId, userTemplateId, { 
+        ...formValues, 
+        recipient_email: formValues.user_email // User's email
+      }, publicKey),
+  
+      // Send to Admin
+      emailjs.send(serviceId, adminTemplateId, { 
+        ...formValues, 
+        recipient_email: adminEmail // Admin's email
+      }, publicKey),
+    ])
+      .then(() => {
+        console.log("Emails sent successfully");
         setIsSent(true);
         setIsLoading(false);
         form.current.reset();
+  
+        // Reset success message after 5 seconds
         setTimeout(() => {
           setIsSent(false);
         }, 5000);
       })
       .catch((error) => {
+        console.error("Email sending failed:", error.text);
         setError("An error occurred. Please try again later.");
         setIsLoading(false);
       });
   };
-
+  
   return (
     <div className="max-w-screen-lg mx-auto p-2">
       <div className="grid grid-cols-1 md:grid-cols-12 border rounded-md">
@@ -53,7 +76,7 @@ const Contact = () => {
           <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight">
             Get In <span className="text-[#3b82f6]">Touch</span>
           </h3>
-          <p class="mt-4 leading-6 text-gray-950">
+          <p className="mt-4 leading-6 text-gray-950">
             Book an appointment with our doctors, Our team is ready and waiting
             to serve you.
           </p>
@@ -117,12 +140,12 @@ const Contact = () => {
         <form
           ref={form}
           onSubmit={sendEmail}
-          class="md:col-span-8 px-10 pt-4 pb-3"
+          className="md:col-span-8 px-10 pt-4 pb-3"
         >
-          <div class="mb-3 " name="contact" id="contact">
+          <div className="mb-3" name="contact" id="contact">
             <label
-              for="user_name"
-              class="mb-1 block text-base font-medium text-[#07074D]"
+              htmlFor="user_name"
+              className="mb-1 block text-base font-medium text-[#07074D]"
             >
               Full Name
             </label>
@@ -131,17 +154,17 @@ const Contact = () => {
               name="user_name"
               id="user_name"
               placeholder="Full Name"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               required
             />
           </div>
 
-          <div class="-mx-3 flex flex-wrap">
-            <div class="w-full px-3 sm:w-1/2">
-              <div class="mb-3">
+          <div className="-mx-3 flex flex-wrap">
+            <div className="w-full px-3 sm:w-1/2">
+              <div className="mb-3">
                 <label
-                  for="user_phone"
-                  class="mb-1 block text-base font-medium text-[#07074D]"
+                  htmlFor="user_phone"
+                  className="mb-1 block text-base font-medium text-[#07074D]"
                 >
                   Phone Number
                 </label>
@@ -150,16 +173,16 @@ const Contact = () => {
                   name="user_phone"
                   id="user_phone"
                   placeholder="Enter your phone number"
-                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   required
                 />
               </div>
             </div>
-            <div class="w-full px-3 sm:w-1/2">
-              <div class="mb-3">
+            <div className="w-full px-3 sm:w-1/2">
+              <div className="mb-3">
                 <label
-                  for="user_email"
-                  class="mb-1 block text-base font-medium text-[#07074D]"
+                  htmlFor="user_email"
+                  className="mb-1 block text-base font-medium text-[#07074D]"
                 >
                   Email Address
                 </label>
@@ -168,24 +191,24 @@ const Contact = () => {
                   name="user_email"
                   id="user_email"
                   placeholder="Enter your email"
-                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   required
                 />
               </div>
             </div>
           </div>
 
-          <div class="-mx-0 mb-3">
+          <div className="-mx-0 mb-3">
             <label
-              for="chosen_service"
-              class="mb-1 block text-base font-medium text-[#07074D]"
+              htmlFor="chosen_service"
+              className="mb-1 block text-base font-medium text-[#07074D]"
             >
               Dental Services
             </label>
             <select
               name="chosen_service"
               id="chosen_service"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             >
               <option value="checkup_Consultation">
                 Dental Check-ups and Consultation
@@ -203,12 +226,12 @@ const Contact = () => {
             </select>
           </div>
 
-          <div class="-mx-3 flex flex-wrap">
-            <div class="w-full px-3 sm:w-1/2">
-              <div class="mb-3">
+          <div className="-mx-3 flex flex-wrap">
+            <div className="w-full px-3 sm:w-1/2">
+              <div className="mb-3">
                 <label
-                  for="user_date"
-                  class="mb-1 block text-base font-medium text-[#07074D]"
+                  htmlFor="user_date"
+                  className="mb-1 block text-base font-medium text-[#07074D]"
                 >
                   Date
                 </label>
@@ -216,15 +239,16 @@ const Contact = () => {
                   type="date"
                   name="user_date"
                   id="user_date"
-                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  required
                 />
               </div>
             </div>
-            <div class="w-full px-3 sm:w-1/2">
-              <div class="mb-3">
+            <div className="w-full px-3 sm:w-1/2">
+              <div className="mb-3">
                 <label
-                  for="user_time"
-                  class="mb-1 block text-base font-medium text-[#07074D]"
+                  htmlFor="user_time"
+                  className="mb-1 block text-base font-medium text-[#07074D]"
                 >
                   Time
                 </label>
@@ -232,7 +256,8 @@ const Contact = () => {
                   type="time"
                   name="user_time"
                   id="user_time"
-                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  required
                 />
               </div>
             </div>
@@ -241,7 +266,7 @@ const Contact = () => {
           <div className="w-full mb-3">
             <label
               className="mb-1 block text-base font-medium text-[#07074D]"
-              for="user_message"
+              htmlFor="user_message"
             >
               Doctor Note
             </label>
