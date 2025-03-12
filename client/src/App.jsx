@@ -16,11 +16,13 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
+import BlogPost from "./components/BlogPost"; 
 
 export default function App() {
   useEffect(() => {
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("process.env.REACT_APP_EMAILJS_PUBLIC_KEY");
   }, []);
+  
   return (
     <Router>
       <Navbar />
@@ -43,15 +45,26 @@ export default function App() {
           }
         />
 
-        {/* Blog Page (Does not load homepage components) */}
-         {/* Blog Page (Now includes Contact & Footer) */}
-         <Route
+        {/* Blog Page (Now includes Contact & Footer) */}
+        <Route
           path="/blog"
           element={
             <>
               <Blog />
               <Contact />  {/* ✅ Contact form for Blog Page */}
               <Footer />   {/* ✅ Footer for Blog Page */}
+            </>
+          }
+        />
+
+        {/* Individual Blog Post Page (includes Contact & Footer) */}
+        <Route
+          path="/blog/:id"
+          element={
+            <>
+              <BlogPost />
+              <Contact />  {/* ✅ Contact form for Blog Post Page */}
+              <Footer />   {/* ✅ Footer for Blog Post Page */}
             </>
           }
         />

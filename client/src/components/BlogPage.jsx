@@ -1,140 +1,196 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation, Autoplay } from "swiper";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { ArrowLeft, Clock, Calendar, Share2, ChevronRight } from "lucide-react";
 
-import { Link } from "react-router-dom";
+// Reusing the blog posts data from your existing component
+import { blogPosts } from "./blogData"; // Assuming you'll move the data to a separate file
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "10 Tips for a Brighter, Healthier Smile",
-    excerpt: "Learn the top 10 dental care tips that will keep your teeth healthy and strong.",
-    date: "March 10, 2025",
-    image: "/images/dental-care-tips.jpg",
-    content:
-      "Brushing twice a day, flossing regularly, and visiting your dentist are essential for a healthy smile. But did you know that your diet also plays a huge role?",
-  },
-  {
-    id: 2,
-    title: "Is Teeth Whitening Safe? What You Need to Know",
-    excerpt: "Many people want a whiter smile, but is it safe? Find out the best and safest teeth whitening methods.",
-    date: "March 5, 2025",
-    image: "/images/teeth-whitening.jpg",
-    content:
-      "Teeth whitening is generally safe when done correctly. However, overuse of bleaching products can weaken enamel...",
-  },
-  {
-    id: 3,
-    title: "Understanding Teeth Whitening Options",
-    excerpt: "Explore various teeth whitening methods and discover which one might be best suited for your needs.",
-    content: "Teeth whitening is one of the most popular cosmetic dental procedures. There are several options available, including in-office professional whitening, at-home whitening kits provided by your dentist, and over-the-counter products. Professional whitening offers the most dramatic results in the shortest time but costs more...",
-    image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-  },
-  {
-    id: 4,
-    title: "Dental Care for Children: A Parent's Guide",
-    excerpt: "Essential tips for helping your children develop good oral hygiene habits from an early age.",
-    content: "Establishing good dental habits early in life is crucial for children's long-term oral health. Start cleaning your baby's gums even before teeth emerge. Once teeth appear, brush gently with a soft toothbrush and water. Introduce fluoride toothpaste in tiny amounts when your child learns to spit...",
-    image: "https://images.unsplash.com/photo-1581553673739-c4906b5d0de8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-  },
-  {
-    id: 5,
-    title: "The Latest Advancements in Dental Technology",
-    excerpt: "Stay informed about cutting-edge technologies that are transforming the field of dentistry.",
-    content: "Dental technology continues to evolve rapidly, offering patients more comfortable, efficient, and effective treatment options. Digital X-rays reduce radiation exposure while providing clearer images. CAD/CAM technology allows for same-day crowns and restorations. Laser dentistry enables more precise treatment with less pain and faster healing...",
-    image: "https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-  },
-];
+const BlogPost = () => {
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+  
+  useEffect(() => {
+    // Find the current post
+    const currentPost = blogPosts.find(post => post.id === parseInt(id));
+    setPost(currentPost);
+    
+    // Get related posts (excluding current post)
+    const related = blogPosts
+      .filter(post => post.id !== parseInt(id))
+      .slice(0, 3); // Limit to 3 related posts
+    setRelatedPosts(related);
+  }, [id]);
 
+  if (!post) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <p className="text-center text-gray-600">Loading post...</p>
+      </div>
+    );
+  }
 
-const Blog = () => {
   return (
-    <section className="bg-gray-50 py-16 mt-8 mb-16">
+    <div className="bg-gray-50 py-16">
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center text-blue-900 mb-10">Dental Blog</h1>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Stay informed with the latest dental care tips, treatments, and technology advancements from our expert team.
-        </p>
-
-        <div className="relative">
-          {/* Swiper Carousel */}
-          <Swiper
-              modules={[Pagination, Navigation, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              breakpoints={{
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2 },
-              }}
-              navigation={{
-                nextEl: ".custom-next",
-                prevEl: ".custom-prev",
-              }}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              loop={true}
-              className="w-full mb-10"
-            >
-              {blogPosts.map((post) => (
-                <SwiperSlide key={post.id} className="flex justify-center py-4">
-                  <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-lg transition-transform hover:scale-105 duration-300 min-h-[450px] flex flex-col">
-                    {/* Consistent Image Height */}
-                    <img src={post.image} alt={post.title} className="w-full h-56 object-cover" />
-
-                    {/* Content Wrapper with Fixed Height */}
-                    <div className="p-6 flex-grow flex flex-col justify-between">
-                      <div>
-                        <h2 className="text-2xl font-semibold text-blue-800 mb-2">{post.title}</h2>
-                        <p className="text-gray-500 text-sm mb-3">{post.date}</p>
-                        <p className="text-gray-700">{post.excerpt}</p>
-                      </div>
-
-                      {/* CTA Buttons (Always at the Bottom) */}
-                      <div className="flex justify-between items-center mt-4">
-                        <Link
-                          to={`/blog/${post.id}`}
-                          className="text-blue-600 hover:text-blue-800 font-medium"
-                        >
-                          Read More
-                        </Link>
-
-                        <Link
-                          to="/#contact"
-                          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition shadow-md"
-                        >
-                          Book an Appointment
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          {/* Custom Navigation Arrows */}
-          <button className="custom-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-blue-600 p-3 rounded-full shadow-md hover:bg-blue-100 transition">
-            <FaChevronLeft size={18} />
-          </button>
-          <button className="custom-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-blue-600 p-3 rounded-full shadow-md hover:bg-blue-100 transition">
-            <FaChevronRight size={18} />
-          </button>
-        </div>
-
-        {/* View All Blog Posts Button */}
-        <div className="text-center">
-          <Link
-            to="/blog"
-            className="inline-block border-2 border-blue-600 text-blue-600 font-medium py-2 px-6 rounded-md hover:bg-blue-50 transition"
-          >
-            View All Blog Posts
+        {/* Breadcrumb */}
+        <div className="mb-8">
+          <Link to="/blog" className="flex items-center text-blue-600 hover:text-blue-800">
+            <ArrowLeft size={16} className="mr-2" />
+            <span>Back to Blog</span>
           </Link>
         </div>
+
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Main Content */}
+          <div className="lg:w-2/3">
+            <article className="bg-white rounded-lg shadow-lg overflow-hidden">
+              {/* Featured Image */}
+              <img 
+                src={post.image} 
+                alt={post.title} 
+                className="w-full h-80 object-cover"
+              />
+              
+              {/* Post Content */}
+              <div className="p-8">
+                <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+                  {post.title}
+                </h1>
+                
+                {/* Post Meta */}
+                <div className="flex items-center text-gray-500 mb-6">
+                  <div className="flex items-center mr-4">
+                    <Calendar size={16} className="mr-1" />
+                    <span>{post.date}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock size={16} className="mr-1" />
+                    <span>5 min read</span>
+                  </div>
+                </div>
+                
+                {/* Post Excerpt */}
+                <p className="text-lg font-medium text-gray-700 mb-6">
+                  {post.excerpt}
+                </p>
+                
+                {/* Full Content */}
+                <div className="prose max-w-none">
+                  <p className="mb-4">{post.content}</p>
+                  {/* Additional content would go here */}
+                  <p className="mb-4">
+                    Regular dental check-ups are essential for maintaining good oral health. 
+                    During these visits, your dentist can detect early signs of problems such as 
+                    tooth decay, gum disease, and oral cancer. Early detection often means 
+                    simpler and less expensive treatment.
+                  </p>
+                  <h2 className="text-2xl font-semibold text-blue-800 my-4">
+                    Why Regular Check-ups Matter
+                  </h2>
+                  <p className="mb-4">
+                    Professional cleanings remove plaque and tartar that regular brushing and 
+                    flossing can't reach. This helps prevent cavities and gum disease. Your dentist 
+                    can also provide personalized advice on improving your oral hygiene routine.
+                  </p>
+                  <p className="mb-4">
+                    Remember, oral health is connected to your overall health. Problems in your 
+                    mouth can affect the rest of your body. For example, gum disease has been 
+                    linked to heart disease, diabetes, and other health conditions.
+                  </p>
+                </div>
+                
+                {/* Social Share */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <div className="flex items-center">
+                    <span className="mr-3 text-gray-600">Share this article:</span>
+                    <div className="flex space-x-2">
+                      <a href="#" className="p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
+                        <Share2 size={16} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            
+            {/* CTA */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Ready to improve your dental health?
+              </h3>
+              <p className="text-gray-700 mb-4">
+                Schedule a consultation with our expert team to discuss your dental care needs.
+              </p>
+              <Link
+                to="/#contact"
+                className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition shadow-md inline-block"
+              >
+                Book an Appointment
+              </Link>
+            </div>
+          </div>
+          
+          {/* Sidebar */}
+          <div className="lg:w-1/3">
+            {/* Related Posts */}
+            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-blue-800 mb-4 border-b border-gray-200 pb-2">
+                Related Articles
+              </h3>
+              <div className="space-y-4">
+                {relatedPosts.map((relatedPost) => (
+                  <div key={relatedPost.id} className="flex items-start border-b border-gray-100 pb-4 last:border-0">
+                    <img 
+                      src={relatedPost.image} 
+                      alt={relatedPost.title}
+                      className="w-16 h-16 object-cover rounded flex-shrink-0 mr-4"
+                    />
+                    <div>
+                      <Link 
+                        to={`/blog/${relatedPost.id}`}
+                        className="font-medium text-blue-800 hover:text-blue-600 line-clamp-2"
+                      >
+                        {relatedPost.title}
+                      </Link>
+                      <p className="text-sm text-gray-500 mt-1">{relatedPost.date}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link 
+                to="/blog"
+                className="mt-4 flex items-center text-blue-600 hover:text-blue-800 font-medium"
+              >
+                View all articles
+                <ChevronRight size={16} className="ml-1" />
+              </Link>
+            </div>
+            
+            {/* Categories */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-4 border-b border-gray-200 pb-2">
+                Categories
+              </h3>
+              <ul className="space-y-2">
+                {['Dental Tips', 'Teeth Whitening', 'Oral Health', 'Children\'s Dentistry', 'Dental Technology'].map((category) => (
+                  <li key={category}>
+                    <Link 
+                      to={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="flex items-center justify-between text-gray-700 hover:text-blue-600 py-2 border-b border-gray-100 last:border-0"
+                    >
+                      <span>{category}</span>
+                      <ChevronRight size={16} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Blog;
+export default BlogPost;

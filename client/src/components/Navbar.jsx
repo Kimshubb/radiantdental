@@ -36,27 +36,49 @@ const Navbar = () => {
     { id: 3, link: "insurance", label: "Insurance", type: "scroll" },
     { id: 4, link: "team", label: "Team", type: "scroll" },
     { id: 6, link: "/blog", label: "Blog", type: "router" },
-    { id: 5, link: "contact", label: "Book Now", type: "scroll" },
+    { id: 5, link: "contact", label: "Book Now", type: "scroll", highlight: true },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 py-3 text-blue-900 transition-all ${showNavbar ? "bg-white shadow-md" : "bg-transparent"}`} style={{ zIndex: 9999 }}>
+    <header 
+      className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 py-3 transition-all duration-300 ${
+        showNavbar 
+          ? "bg-white bg-opacity-95 backdrop-blur-sm shadow-md" 
+          : "bg-transparent"
+      }`} 
+      style={{ zIndex: 9999 }}
+    >
       {/* LOGO */}
-      <ScrollLink to="home" className="flex items-center cursor-pointer text-2xl font-bold text-blue-900" smooth={true} duration={500}>
-        <span className="mr-1 text-xl text-blue-500">🦷</span> RadiantDental
+      <ScrollLink to="home" className="flex items-center cursor-pointer text-2xl font-bold text-indigo-800" smooth={true} duration={500}>
+        <span className="mr-2 text-xl text-blue-500">🦷</span> 
+        <span className="bg-gradient-to-r from-blue-600 to-indigo-800 bg-clip-text text-transparent">
+          RadiantDental
+        </span>
       </ScrollLink>
 
       {/* Desktop Navigation */}
       <nav className="hidden md:block">
         <ul className="flex items-center space-x-6">
-          {links.map(({ id, link, label, type }) => (
+          {links.map(({ id, link, label, type, highlight }) => (
             <li key={id}>
               {type === "scroll" ? (
-                <button onClick={() => handleNavigation(link)} className={`cursor-pointer font-semibold hover:text-blue-400 ${showNavbar ? "text-blue-600" : "text-blue-900"}`}>
+                <button 
+                  onClick={() => handleNavigation(link)} 
+                  className={`cursor-pointer font-semibold transition-colors duration-200 ${
+                    highlight 
+                      ? "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" 
+                      : `hover:text-blue-600 ${showNavbar ? "text-indigo-800" : "text-indigo-800"}`
+                  }`}
+                >
                   {label}
                 </button>
               ) : (
-                <RouterLink to={link} className="cursor-pointer font-semibold hover:text-blue-400">
+                <RouterLink 
+                  to={link} 
+                  className={`cursor-pointer font-semibold transition-colors duration-200 ${
+                    showNavbar ? "text-indigo-800" : "text-indigo-800"
+                  } hover:text-blue-600`}
+                >
                   {label}
                 </RouterLink>
               )}
@@ -67,22 +89,36 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       <div className="md:hidden relative">
-        <button className="flex items-center focus:outline-none" onClick={() => setShowMenu(!showMenu)}>
-          <svg className="h-6 w-6 text-blue-900" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <button 
+          className="flex items-center focus:outline-none" 
+          onClick={() => setShowMenu(!showMenu)}
+          aria-label="Toggle menu"
+        >
+          <svg className="h-6 w-6 text-indigo-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
         {showMenu && (
-          <ul className="absolute top-14 right-0 z-[9999] w-48 py-2 bg-white border border-gray-300 rounded shadow-md" onClick={() => setShowMenu(false)}>
-            {links.map(({ id, link, label, type }) => (
-              <li key={id}>
+          <ul className="absolute top-14 right-0 z-[9999] w-52 py-2 bg-white border border-blue-100 rounded-lg shadow-lg" onClick={() => setShowMenu(false)}>
+            {links.map(({ id, link, label, type, highlight }) => (
+              <li key={id} className="mx-2 my-1">
                 {type === "scroll" ? (
-                  <button onClick={() => handleNavigation(link)} className="block px-4 py-2 font-semibold mt-1 text-blue-900 hover:text-blue-500">
+                  <button 
+                    onClick={() => handleNavigation(link)} 
+                    className={`block w-full text-left px-4 py-2 font-semibold transition-colors duration-200 rounded ${
+                      highlight 
+                        ? "bg-blue-600 text-white hover:bg-blue-700" 
+                        : "text-indigo-800 hover:bg-blue-50 hover:text-blue-600"
+                    }`}
+                  >
                     {label}
                   </button>
                 ) : (
-                  <RouterLink to={link} className="block px-4 py-2 font-semibold mt-1 text-blue-900 hover:text-blue-500">
+                  <RouterLink 
+                    to={link} 
+                    className="block w-full text-left px-4 py-2 font-semibold text-indigo-800 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 rounded"
+                  >
                     {label}
                   </RouterLink>
                 )}

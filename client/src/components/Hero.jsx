@@ -29,8 +29,11 @@ const Hero = () => {
   }, [isHovered]);
 
   return (
-    <main className="relative overflow-hidden bg-white">
-      <div name="home">
+    <main className="relative overflow-hidden">
+      {/* Improved gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-white to-indigo-100"></div>
+      
+      <div name="home" className="relative z-10">
         <div className="mx-auto h-full px-4 py-10 sm:max-w-xl md:max-w-full md:px-24 md:py-36 lg:px-8">
           <div className="flex flex-col items-center justify-between lg:flex-row">
             {/* Text Section */}
