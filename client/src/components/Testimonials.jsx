@@ -89,7 +89,7 @@ export default function App() {
             <div class="my-auto carousel-item active relative float-left w-full">
               <img
                 class="rounded-full shadow-lg mb-6 mt-6  w-24 mx-auto"
-                src="https://i.ibb.co/XVFPhWP/PSX-20230524-011601.jpg"
+                src="/images/lady1.jpg"
                 alt="avatar"
               />
               <div class="flex my-auto flex-wrap justify-center">
@@ -217,7 +217,7 @@ export default function App() {
             <div class="my-auto carousel-item active relative float-left w-full">
               <img
                 class="rounded-full shadow-lg mb-6 mt-6  w-24 mx-auto"
-                src="https://i.ibb.co/8b8NJBN/PSX-20230511-214634.jpg"
+                src="/images/guy1.jpg"
                 alt="avatar"
               />
               <div class="flex flex-wrap justify-center">
@@ -345,7 +345,7 @@ export default function App() {
             <div class="my-auto carousel-item active relative float-left w-full">
               <img
                 class="rounded-full shadow-lg mb-6 mt-6  w-24 mx-auto"
-                src="https://i.ibb.co/NCpZNrf/PSX-20230511-214524.jpg"
+                src="/images/guy2.jpg"
                 alt="avatar"
               />
               <div class="flex  flex-wrap justify-center">
@@ -473,7 +473,7 @@ export default function App() {
             <div class="my-auto carousel-item active relative float-left w-full">
               <img
                 class="rounded-full shadow-lg mb-6 mt-6  w-24 mx-auto"
-                src="https://i.ibb.co/59ysYDf/PSX-20230511-215559.jpg"
+                src="/images/guy3.jpg"
                 alt="avatar"
               />
               <div class="flex my-auto flex-wrap justify-center">
@@ -600,7 +600,7 @@ export default function App() {
             <div class="my-auto carousel-item active relative float-left w-full">
               <img
                 class="rounded-full shadow-lg mb-6 mt-6  w-24 mx-auto"
-                src={Olvier}
+                src="/images/guy4.jpg"
                 alt="avatar"
               />
               <div class="flex flex-wrap justify-center">
