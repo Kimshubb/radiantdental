@@ -10,7 +10,7 @@ export default defineConfig({
     host: true, // Allows external access
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     emptyOutDir: true, // Clears previous build
     cssCodeSplit: true, // Extracts CSS into separate files
     minify: 'esbuild',
