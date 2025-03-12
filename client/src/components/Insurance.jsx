@@ -9,6 +9,17 @@ import ORIENT from "./Images/insurance/orient.png";
 import SANLAM from "./Images/insurance/sanlam.png";
 import { Fade } from "react-awesome-reveal";
 
+const insuranceLogos = [
+  "/images/insurance/jubilee-logo.png",
+  "/images/insurance/aar.png",
+  "/images/insurance/cic.png",
+  "/images/insurance/apa logo.png",
+  "/images/insurance/madison.png",
+  "/images/insurance/britam.png",
+  "/images/insurance/orient.png",
+  "/images/insurance/sanlam.png",
+];
+
 const Insurance = () => {
   return (
     <section className="mt-16 " id="insurance">
@@ -58,7 +69,7 @@ const Insurance = () => {
         {/* <div class="slide-track animate-scroll"> */}
         <div class="slide h-100 w-250">
           <img
-            src={JUBILEE}
+            src="/images/insurance/jubilee-logo.png"
             className="object-cover"
             height="100"
             width="250"
@@ -66,27 +77,27 @@ const Insurance = () => {
           />
         </div>
         <div class="slide h-100 w-250">
-          <img src={SANLAM} height="100" width="250" alt="" />
+          <img src= "/images/insurance/sanlam.png" height="100" width="250" alt="" />
         </div>
         <div class="slide h-100 w-250">
-          <img src={ORIENT} height="10" width="250" alt="" />
+          <img src= "/images/insurance/orient.png" height="10" width="250" alt="" />
         </div>
         <div class="slide h-100 w-250">
-          <img src={BRITAM} className="" alt="" />
+          <img src= "/images/insurance/britam.png" className="" alt="" />
         </div>
         <div class="slide h-100 w-250">
-          <img src={MADISON} height="100" width="250" alt="" />
-        </div>
-
-        <div class="slide h-100 w-250">
-          <img src={AAR} height="100" width="250" alt="Prime Insurance" />
-        </div>
-        <div class="slide h-100 w-250">
-          <img src={APA} height="50" width="250" alt="" />
+          <img src= "/images/insurance/madison.png" height="100" width="250" alt="" />
         </div>
 
         <div class="slide h-100 w-250">
-          <img src={CIC} height="100" width="250" alt="" />
+          <img src= "/images/insurance/aar.png" height="100" width="250" alt="Prime Insurance" />
+        </div>
+        <div class="slide h-100 w-250">
+          <img src= "/images/insurance/apa logo.png" height="50" width="250" alt="" />
+        </div>
+
+        <div class="slide h-100 w-250">
+          <img src="/images/insurance/cic.png" height="100" width="250" alt="" />
         </div>
       </div>
     </section>

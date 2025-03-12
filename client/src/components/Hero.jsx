@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
-import img1 from "./Images/hero.webp"; 
-import img2 from "./Images/hero2.webp";
-import img3 from "./Images/hero3.webp";
-import img4 from "./Images/hero4.webp";
 
-const images = [img1, img2, img3, img4];
+const images = [
+  "/images/hero.webp",
+  "/images/hero2.webp",
+  "/images/hero3.webp",
+  "/images/hero4.webp",
+];
+
 
 const captions = [
   { title: "Your Smile,", highlight: "Our Expertise", description: "From routine check-ups to complete smile makeovers, we blend artistry with advanced dental care." },

@@ -1,9 +1,12 @@
 import React from "react";
-import Arriana from "./Images/arriana.png";
-import Lucy from "./Images/dr lucy.jpg";
-import Lelei from "./Images/dr lelei.jpg";
-import Magara from "./Images/dr magara.jpg";
 import { Fade } from "react-awesome-reveal";
+
+const teamMembers = [
+  { name: "Arriana", image: "/images/arriana.png" },
+  { name: "Dr. Lucy", image: "/images/dr lucy.jpg" },
+  { name: "Dr. Lelei", image: "/images/dr lelei.jpg" },
+  { name: "Dr. Magara", image: "/images/dr magara.jpg" },
+];
 
 const Team = () => {
   return (
@@ -63,7 +66,7 @@ const Team = () => {
           <div class="w-full max-w-xs text-center">
             <img
               class="object-cover object-center w-full h-60 mx-auto rounded-lg"
-              src={Lelei}
+              src="/images/dr lelei.jpg"
               alt="avatar"
             />
 
@@ -76,7 +79,7 @@ const Team = () => {
           <div class="w-full max-w-xs text-center">
             <img
               class="object-cover object-center w-full h-60 mx-auto rounded-lg"
-              src={Lucy}
+              src="/images/dr lucy.jpg" 
               alt="avatar"
             />
 
@@ -89,7 +92,7 @@ const Team = () => {
           <div class="w-full max-w-xs text-center">
             <img
               class="object-cover object-center w-full  h-60 mx-auto rounded-lg"
-              src={Magara}
+              src="/images/dr magara.png"
               alt="avatar"
             />
 
@@ -104,7 +107,7 @@ const Team = () => {
           <div class="w-full max-w-xs text-center">
             <img
               class="object-cover object-center w-full h-60 mx-auto rounded-lg"
-              src={Arriana}
+              src="/images/arriana.png"
               alt="Arriana avatar"
             />
 
