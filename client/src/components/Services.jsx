@@ -1,13 +1,17 @@
 import React from "react";
-import Consultation from "./Images/consultation.jpg";
-import Extraction from "./Images/extraction.jpg";
-import Service1 from "./Images/beautiful-smile.jpg";
-import Xray from "./Images/xray.jpeg";
-import RootCanal from "./Images/rootcanal.jpeg";
-import Ortho from "./Images/braces.jpeg";
-import Bridge from "./Images/crown.jpeg";
-import Toothache from "./Images/inflamation.jpg";
 import { Fade } from "react-awesome-reveal";
+
+/*const services = [
+  { name: "Consultation", image: "/images/consultation.jpg" },
+  { name: "Extraction", image: "/images/extraction.jpg" },
+  { name: "Beautiful Smile", image: "/images/beautiful-smile.jpg" },
+  { name: "X-ray", image: "/images/xray.jpeg" },
+  { name: "Root Canal", image: "/images/rootcanal.jpeg" },
+  { name: "Orthodontics", image: "/images/braces.jpeg" },
+  { name: "Dental Bridge", image: "/images/crown.jpeg" },
+  { name: "Toothache", image: "/images/inflamation.jpg" },
+];*/
+
 
 const Services = () => {
   return (
@@ -63,7 +67,7 @@ const Services = () => {
         <ul class="grid gap-4 h-30 mt-6 sm:grid-cols-2   lg:grid-cols-4 ">
           <Fade>
             <li className="bg-slate-200 ">
-              <img src={Service1} alt="" class="" />
+              <img src= "/images/beautiful-smile.jpg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -75,7 +79,7 @@ const Services = () => {
 
           <Fade>
             <li className="bg-slate-200 ">
-              <img src={Xray} alt="" class="" />
+              <img src= "/images/xray.jpeg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 ">X-ray</h3>
@@ -85,7 +89,7 @@ const Services = () => {
 
           <Fade>
             <li className="bg-slate-200">
-              <img src={Ortho} alt="" class="" />
+              <img src= "/images/braces.jpeg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -96,7 +100,7 @@ const Services = () => {
           </Fade>
           <Fade>
             <li className="bg-slate-200 ">
-              <img src={Bridge} alt="" class="" />
+              <img src= "/images/crown.jpeg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -107,7 +111,7 @@ const Services = () => {
           </Fade>
           <Fade>
             <li className="bg-slate-200">
-              <img src={Toothache} alt="" class="" />
+              <img src="/images/inflamation.jpg"  alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -118,7 +122,7 @@ const Services = () => {
           </Fade>
           <Fade>
             <li className="bg-slate-200">
-              <img src={Extraction} alt="" class="" />
+              <img src="/images/extraction.jpg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -129,7 +133,7 @@ const Services = () => {
           </Fade>
           <Fade>
             <li className="bg-slate-200">
-              <img src={RootCanal} alt="" class="" />
+              <img src= "/images/rootcanal.jpeg" alt="" class="" />
 
               <div class="relative py-2">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">
@@ -140,7 +144,7 @@ const Services = () => {
           </Fade>
           <Fade>
             <li className="bg-slate-200 rounded-[4px]">
-              <img src={Consultation} alt="" class=" " />
+              <img src="/images/consultation.jpg"  alt="" class=" " />
 
               <div class="relative py-2 ">
                 <h3 class="text-m text-center text-gray-700 group-hover:underline group-hover:underline-offset-4">

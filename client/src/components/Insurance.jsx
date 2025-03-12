@@ -1,5 +1,5 @@
 import React from "react";
-import JUBILEE from "./Images/insurance/jubilee-logo.png";
+/*import JUBILEE from "./Images/insurance/jubilee-logo.png";
 import AAR from "./Images/insurance/aar.png";
 import CIC from "./Images/insurance/cic.png";
 import APA from "./Images/insurance/apa logo.png";
@@ -18,7 +18,7 @@ const insuranceLogos = [
   "/images/insurance/britam.png",
   "/images/insurance/orient.png",
   "/images/insurance/sanlam.png",
-];
+];*/
 
 const Insurance = () => {
   return (
