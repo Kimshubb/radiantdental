@@ -16,7 +16,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
-import BlogPost from "./components/BlogPost"; 
+import BlogPost from "./components/BlogPosts"; 
 
 export default function App() {
   useEffect(() => {
