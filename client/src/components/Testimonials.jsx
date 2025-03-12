@@ -1,6 +1,6 @@
 //import React, { useRef, useState } from "react";
 import React from "react";
-import Olvier from "./Images/olivier.png";
+/*import Olvier from "./Images/olivier.png";*/
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
