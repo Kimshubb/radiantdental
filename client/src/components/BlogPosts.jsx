@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Import the blog posts from the separate file
-import { blogPosts } from "./blogData";
+import { blogPosts } from "./Blogdata";
 
 const Blog = () => {
   return (
