@@ -15,4 +15,8 @@ export default defineConfig({
     cssCodeSplit: true, // Extracts CSS into separate files
     minify: 'esbuild',
   },
+  optimizeDeps: {
+    include: ["react-awesome-reveal"],
+  },
 });
+// Compare this snippet from client/src/components/Contact.jsx:

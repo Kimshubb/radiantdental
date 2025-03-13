@@ -1,81 +1,87 @@
 import React from "react";
-import { Fade } from "react-awesome-reveal";
+import { motion } from "framer-motion";
 
 const FAQs = () => {
   return (
     <section className="bg-white pb-7 text-slate-900">
-      <div className="container  flex flex-col justify-center p-3 mx-auto md:p-8">
-        <Fade>
-          <h2 className="mb-10 mt-10 text-3xl font-bold leading-none text-center sm:mx-4">
-            {" "}
-            Frequently Asked Questions
-          </h2>
-        </Fade>
-        <div className="flex flex-col divide-y divide-gray-300 sm:mx-12 lg:px-12 xl:px-32 mb-10">
-          <Fade>
-            <details>
-              <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
-                {" "}
-                What Services does Radiant Dental clinic offer?
-              </summary>
+      <div className="container flex flex-col justify-center p-3 mx-auto md:p-8">
+        <motion.h2
+          className="mb-10 mt-10 text-3xl font-bold leading-none text-center sm:mx-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Frequently Asked Questions
+        </motion.h2>
 
-              <div className="px-4 pb-4">
-                <p>
-                  {" "}
-                  DentRw offers a wide range of dental services, including
-                  preventative care, virtual consultation, cleanings, fillings,
-                  root canals, extractions and more. Our Experienced team is
-                  dedicated to providing exceptional oral health care to our
-                  patients
-                </p>
-              </div>
-            </details>
-          </Fade>
-          <Fade>
-            <details>
-              <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
-                {" "}
-                Do i really need a doctor to extract my own teeth?{" "}
-              </summary>
-              <div>
-                <p className="px-4 pb-4">
-                  It's important to note that tooth bud extraction can have
-                  serious and detrimental effects on oral health. The tooth buds
-                  are the immature teeth that are still developing beneath the
-                  gums in children. Removing these tooth buds interferes with
-                  the natural eruption and alignment of permanent teeth, leading
-                  to various dental issues.
-                </p>
-                <p className="px-4 pb-4">
-                  Some potential effects of tooth bud extraction include:
-                  Misalignment of Teeth, Impacted Teeth, Bite Problems
-                  ,Psychological Impact. It's essential to prioritize
-                  evidence-based dental care practices.
-                </p>
-              </div>
-            </details>
-          </Fade>
-          <Fade>
-            <details>
-              <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
-                {" "}
-                How do I schedule an appointment at Radiant ?{" "}
-              </summary>
-              <div>
-                <p className="px-4 pb-4">
-                  {" "}
-                  To schedule appointment at Radiant Dental Clinic simpy fill below form and
-                  submit.
-                </p>
-                <p className="px-4 pb-4">
-                  {" "}
-                  Besides our online booking system, you can also give us a
-                  call. We offer flexible scheduling options to ensure that you
-                  can receive the care you need at a time that works for you.
-                </p>
-              </div>
-            </details>
-          </Fade>
+        <div className="flex flex-col divide-y divide-gray-300 sm:mx-12 lg:px-12 xl:px-32 mb-10">
+          <motion.details
+            open
+            className="group"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
+              What services does Radiant Dental Clinic offer?
+            </summary>
+            <div className="px-4 pb-4">
+              <p>
+                Radiant Dental Clinic offers a wide range of dental services, including
+                preventative care, virtual consultations, cleanings, fillings, root canals,
+                extractions, and more. Our experienced team is dedicated to providing
+                exceptional oral health care to our patients.
+              </p>
+            </div>
+          </motion.details>
+
+          <motion.details
+            className="group"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
+              Do I really need a doctor to extract my own teeth?
+            </summary>
+            <div>
+              <p className="px-4 pb-4">
+                It's important to note that extracting a tooth without professional guidance
+                can have serious consequences. Tooth buds are immature teeth developing beneath
+                the gums, and removing them improperly can cause long-term oral health issues.
+              </p>
+              <p className="px-4 pb-4">
+                Some potential risks include:
+                <ul className="list-disc pl-6">
+                  <li>Misalignment of teeth</li>
+                  <li>Impacted teeth</li>
+                  <li>Bite problems</li>
+                  <li>Psychological impact</li>
+                </ul>
+                Always consult a dental professional for safe and evidence-based care.
+              </p>
+            </div>
+          </motion.details>
+
+          <motion.details
+            className="group"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <summary className="py-2 outline-none cursor-pointer focus:font-semibold">
+              How do I schedule an appointment at Radiant?
+            </summary>
+            <div>
+              <p className="px-4 pb-4">
+                You can schedule an appointment at Radiant Dental Clinic by filling out the online booking form below.
+              </p>
+              <p className="px-4 pb-4">
+                In addition to our online system, you can also call us. We offer flexible scheduling
+                options to accommodate your needs.
+              </p>
+            </div>
+          </motion.details>
         </div>
       </div>
     </section>

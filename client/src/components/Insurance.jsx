@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 /*import JUBILEE from "./Images/insurance/jubilee-logo.png";
 import AAR from "./Images/insurance/aar.png";
 import CIC from "./Images/insurance/cic.png";
