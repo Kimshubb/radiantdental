@@ -23,8 +23,8 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
   
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     
     const formData = new FormData(form.current);
     const formValues = Object.fromEntries(formData.entries());
@@ -32,8 +32,8 @@ const Contact = () => {
     const adminEmail = "radiantdental7@gmail.com";
   
     // EmailJS Template IDs
-    const userTemplateId = process.env.REACT_APP_EMAILJS_USER_TEMPLATE_ID; 
-    const adminTemplateId = process.env.REACT_APP_EMAILJS_ADMIN_TEMPLATE_ID;
+    const userTemplateId = import.meta.env.VITE_EMAILJS_USER_TEMPLATE_ID;
+    const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
   
     Promise.all([
       // Send to User

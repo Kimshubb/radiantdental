@@ -20,7 +20,7 @@ import BlogPost from "./components/BlogPosts";
 
 export default function App() {
   useEffect(() => {
-    emailjs.init("process.env.REACT_APP_EMAILJS_PUBLIC_KEY");
+    emailjs.init("import.meta.env.VITE_EMAILJS_PUBLIC_KEY");
   }, []);
   
   return (
