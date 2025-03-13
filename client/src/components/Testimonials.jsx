@@ -12,7 +12,7 @@ export default function Testimonials() {
     {
       id: 1,
       name: "SARAH Kimani",
-      position: "HR - Safaricom PLC",
+      position: "Business Woman",
       image: "/images/lady1.jpg",
       text: "I had an outstanding experience at Radiant dental clinic. Their staff is very friendly and their facilities are state-of-the-art. They took great care of me, the dental care was done with precision and expertise. Thank you Radiant!",
       rating: 4
@@ -21,7 +21,7 @@ export default function Testimonials() {
       id: 2,
       name: "John Mwangi",
       position: "Software Engineer - Microsoft",
-      image: "/images/man1.jpg",
+      image: "/images/guy1.jpg",
       text: "The dental team was professional and caring. They made a typically stressful experience comfortable and painless. I'm very satisfied with my treatment and would highly recommend Radiant Dental to anyone.",
       rating: 5
     },

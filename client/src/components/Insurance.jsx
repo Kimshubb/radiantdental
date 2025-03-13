@@ -70,7 +70,7 @@ const Insurance = () => {
         {/* <div class="slide-track animate-scroll"> */}
         <div class="slide h-100 w-250">
           <img
-            src="/images/insurance/jubilee-logo.png"
+            src="/images/jubilee-logo.png"
             className="object-cover"
             height="100"
             width="250"
@@ -78,27 +78,27 @@ const Insurance = () => {
           />
         </div>
         <div class="slide h-100 w-250">
-          <img src= "/images/insurance/sanlam.png" height="100" width="250" alt="" />
+          <img src= "/images/sanlam.png" height="100" width="250" alt="sanlam" />
         </div>
         <div class="slide h-100 w-250">
-          <img src= "/images/insurance/orient.png" height="10" width="250" alt="" />
+          <img src= "/images/orient.png" height="10" width="250" alt="orient" />
         </div>
         <div class="slide h-100 w-250">
-          <img src= "/images/insurance/britam.png" className="" alt="" />
+          <img src= "/images/britam.png" className="" alt="britam" />
         </div>
         <div class="slide h-100 w-250">
-          <img src= "/images/insurance/madison.png" height="100" width="250" alt="" />
-        </div>
-
-        <div class="slide h-100 w-250">
-          <img src= "/images/insurance/aar.png" height="100" width="250" alt="Prime Insurance" />
-        </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/insurance/apa logo.png" height="50" width="250" alt="" />
+          <img src= "/images/madison.png" height="100" width="250" alt="madison" />
         </div>
 
         <div class="slide h-100 w-250">
-          <img src="/images/insurance/cic.png" height="100" width="250" alt="" />
+          <img src= "/images/aar.png" height="100" width="250" alt="aar" />
+        </div>
+        <div class="slide h-100 w-250">
+          <img src= "/images/apa logo.png" height="50" width="250" alt="" />
+        </div>
+
+        <div class="slide h-100 w-250">
+          <img src="/images/cic.png" height="100" width="250" alt="" />
         </div>
       </div>
     </section>
