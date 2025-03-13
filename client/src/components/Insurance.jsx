@@ -66,41 +66,21 @@ const Insurance = () => {
           </div>
         </Fade>
       </header>
-      <div class="slider grid grid-cols-4 lg:grid-cols-8   shadow-md opacity-[100%] h-100 mx-auto overflow-hidden relative ">
-        {/* <div class="slide-track animate-scroll"> */}
-        <div class="slide h-100 w-250">
-          <img
-            src="/images/jubilee-logo.png"
-            className="object-cover"
-            height="100"
-            width="250"
-            alt=""
-          />
+      <div className="slider flex flex-wrap justify-center items-center shadow-md opacity-[100%] mx-auto overflow-hidden relative space-x-4 p-4">
+        <div className="slide h-24 w-64 flex items-center justify-center">
+          <img src="/images/cigna.png" className="object-contain" height="100" width="250" alt="cigna" />
         </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/sanlam.png" height="100" width="250" alt="sanlam" />
+        <div className="slide h-24 w-64 flex items-center justify-center">
+          <img src="/images/britam.png" height="100" width="250" alt="Britam" />
         </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/orient.png" height="10" width="250" alt="orient" />
+        <div className="slide h-24 w-64 flex items-center justify-center">
+          <img src="/images/uap.jpg" height="100" width="250" alt="uap" />
         </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/britam.png" className="" alt="britam" />
-        </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/madison.png" height="100" width="250" alt="madison" />
-        </div>
-
-        <div class="slide h-100 w-250">
-          <img src= "/images/aar.png" height="100" width="250" alt="aar" />
-        </div>
-        <div class="slide h-100 w-250">
-          <img src= "/images/apa logo.png" height="50" width="250" alt="" />
-        </div>
-
-        <div class="slide h-100 w-250">
-          <img src="/images/cic.png" height="100" width="250" alt="" />
+        <div className="slide h-24 w-64 flex items-center justify-center">
+          <img src="/images/cic.png" height="100" width="250" alt="CIC" />
         </div>
       </div>
+
     </section>
   );
 };

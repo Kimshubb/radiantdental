@@ -37,14 +37,14 @@ const Team = () => {
         </motion.div>
 
         {/* Team Cards */}
-        <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-4 justify-center">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="w-full max-w-xs text-center"
+              className="w-full max-w-sm text-center flex flex-col items-center"
             >
               <img
                 className="object-cover w-full h-60 mx-auto rounded-lg"

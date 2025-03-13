@@ -2,11 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const services = [
-  { id: 1, name: "Cleaning & Teeth whitening", image: "/images/beautiful-smile.jpg" },
-  { id: 2, name: "X-ray", image: "/images/xray.jpeg" },
-  { id: 3, name: "Orthodontic Treatment", image: "/images/braces.jpeg" },
-  { id: 4, name: "Dental Bridge", image: "/images/crown.jpeg" },
-  { id: 5, name: "Toothache relief", image: "/images/inflamation.jpg" },
+  { id: 1, name: "Full Mouth Scaling & Polishing", image: "/images/beautiful-smile.jpg" },
+  { id: 2, name: "Dental Crown & Bridge", image: "/images/xray.jpeg" },
+  { id: 3, name: "Permanent Filling", image: "/images/braces.jpeg" },
+  { id: 4, name: "Dental Implant", image: "/images/crown.jpeg" },
+  { id: 5, name: "Braces", image: "/images/inflamation.jpg" },
   { id: 6, name: "Extraction", image: "/images/extraction.jpg" },
   { id: 7, name: "Root Canal Treatment", image: "/images/rootcanal.jpeg" },
   { id: 8, name: "Check-ups and Consultation", image: "/images/consultation.jpg" },
