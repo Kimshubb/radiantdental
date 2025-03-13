@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Clock, Calendar, Share2, ChevronRight } from "lucide-react";
 
 // Reusing the blog posts data from existing component
-import { blogPosts } from "./blogData"; 
+import { blogPosts } from "./blog-data.js"; 
 
 const BlogPost = () => {
   const { id } = useParams();
