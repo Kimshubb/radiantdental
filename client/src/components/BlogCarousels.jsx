@@ -8,33 +8,33 @@ const BlogCarousel = () => {
       id: 1,
       title: "The Importance of Regular Dental Check-ups",
       excerpt: "Discover why bi-annual dental visits are crucial for maintaining optimal oral health and preventing serious issues.",
-      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "/images/checkup.jpg",
       date: "March 5, 2025",
-      author: "Dr. Sarah Johnson"
+      author: "Admin"
     },
     {
       id: 2,
       title: "Tips for Proper Brushing Techniques",
       excerpt: "Learn the correct way to brush your teeth to ensure thorough cleaning and prevent gum disease.",
-      image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "/images/brush.jpg",
       date: "February 20, 2025",
-      author: "Dr. Michael Chen"
+      author: "Admin"
     },
     {
       id: 3,
       title: "Understanding Teeth Whitening Options",
       excerpt: "Explore various teeth whitening methods and discover which one might be best suited for your needs.",
-      image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "/images/teethwhite.jpg",
       date: "January 15, 2025",
-      author: "Dr. Lisa Patel"
+      author: "Admin"
     },
     {
       id: 4,
       title: "Dental Care for Children: A Parent's Guide",
       excerpt: "Essential tips for helping your children develop good oral hygiene habits from an early age.",
-      image: "https://images.unsplash.com/photo-1581553673739-c4906b5d0de8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "/images/childrendental.jpg",
       date: "December 10, 2024",
-      author: "Dr. James Wilson"
+      author: "Admin"
     }
   ];
 

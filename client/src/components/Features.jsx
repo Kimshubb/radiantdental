@@ -9,9 +9,9 @@ const fadeInVariant = {
 const Features = () => {
   const features = [
     {
-      title: "Virtual Consultation",
+      title: "Insurance Accepted",
       description:
-        "Embrace technology for your convenience. We understand that your time is valuable—explore treatments from anywhere.",
+        "We accept multiple insurance providers and are continuously expanding our partnerships to ensure you receive care, regardless of your provider.",
     },
     {
       title: "Online Booking",

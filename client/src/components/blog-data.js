@@ -5,7 +5,7 @@ export const blogPosts = [
       title: "10 Tips for a Brighter, Healthier Smile",
       excerpt: "Learn the top 10 dental care tips that will keep your teeth healthy and strong.",
       date: "March 10, 2025",
-      image: "/images/beautiful-smile.jpg",
+      image: "/images/smilee.jpg",
       content:
         "Brushing twice a day, flossing regularly, and visiting your dentist are essential for a healthy smile. But did you know that your diet also plays a huge role? Foods rich in calcium strengthen your teeth, while crunchy fruits and vegetables naturally clean them. Limiting sugary and acidic foods can prevent tooth decay and erosion. Using fluoride toothpaste helps remineralize enamel and prevent cavities. Replacing your toothbrush every three to four months ensures effective cleaning.",
       category: "Dental Tips"
