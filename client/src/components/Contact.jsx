@@ -25,7 +25,7 @@ const Contact = () => {
   
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const userTemplateId = import.meta.env.VITE_EMAILJS_USER_TEMPLATE_ID;
+    const userTemplateId = "template_ilfy2wt";
     const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
 
     console.log("Sending email with:", { serviceId, userTemplateId, adminTemplateId, publicKey });
