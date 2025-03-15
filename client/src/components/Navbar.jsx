@@ -20,11 +20,11 @@ const Navbar = () => {
       const section = location.hash.replace("#", ""); // Remove #
       scroller.scrollTo(section, { smooth: true, duration: 500 });
     }
-  }, [location]); // Run whenever location changes
+  }, [location]);
 
   const handleNavigation = (link) => {
     if (location.pathname !== "/") {
-      navigate(`/#${link}`); // Navigate to home with hash
+      navigate(`/#${link}`);
     } else {
       scroller.scrollTo(link, { smooth: true, duration: 500 });
     }
@@ -48,12 +48,26 @@ const Navbar = () => {
       }`} 
       style={{ zIndex: 9999 }}
     >
-      {/* LOGO */}
-      <ScrollLink to="home" className="flex items-center cursor-pointer text-2xl font-bold text-indigo-800" smooth={true} duration={500}>
-        <span className="mr-2 text-xl text-blue-500">🦷</span> 
-        <span className="bg-gradient-to-r from-blue-600 to-indigo-800 bg-clip-text text-transparent">
-          RadiantDental
-        </span>
+      {/* LOGO IMAGE */}
+      <ScrollLink 
+        to="home" 
+        className="flex items-center cursor-pointer" 
+        smooth={true} 
+        duration={500}
+      >
+        {/* Desktop Logo */}
+        <img 
+          src="/radiant-maindesktop.png" 
+          alt="RadiantDental Logo" 
+          className="hidden md:block h-12 w-auto"
+        />
+
+        {/* Mobile Logo */}
+        <img 
+          src="/radiant-mainmobi.png" 
+          alt="RadiantDental Mobile Logo" 
+          className="md:hidden h-10 w-auto"
+        />
       </ScrollLink>
 
       {/* Desktop Navigation */}
@@ -100,7 +114,10 @@ const Navbar = () => {
         </button>
 
         {showMenu && (
-          <ul className="absolute top-14 right-0 z-[9999] w-52 py-2 bg-white border border-blue-100 rounded-lg shadow-lg" onClick={() => setShowMenu(false)}>
+          <ul 
+            className="absolute top-14 right-0 z-[9999] w-52 py-2 bg-white border border-blue-100 rounded-lg shadow-lg" 
+            onClick={() => setShowMenu(false)}
+          >
             {links.map(({ id, link, label, type, highlight }) => (
               <li key={id} className="mx-2 my-1">
                 {type === "scroll" ? (

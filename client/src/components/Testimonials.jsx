@@ -57,28 +57,7 @@ export default function Testimonials() {
             </div>
             <h2 className="max-w-lg mb-0 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
-                <svg
-                  viewBox="0 0 52 24"
-                  fill="currentColor"
-                  className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-                >
-                  <defs>
-                    <pattern
-                      id="18302e52-9e2a-4c8e-9550-0cbb21b38e55"
-                      x="0"
-                      y="0"
-                      width=".135"
-                      height=".30"
-                    >
-                      <circle cx="1" cy="1" r=".7" />
-                    </pattern>
-                  </defs>
-                  <rect
-                    fill="url(#18302e52-9e2a-4c8e-9550-0cbb21b38e55)"
-                    width="52"
-                    height="24"
-                  />
-                </svg>
+                
                 <span className="relative">Read </span>
               </span>{" "}
               reviews from Our{" "}
@@ -142,6 +121,8 @@ export default function Testimonials() {
                         {testimonial.position}
                       </p>
                       <p className="text-gray-600 mb-12">
+                        {/* Decorative Blurred Circle 
+                        <span className="absolute top-0 left-0 z-0 hidden w-24 h-24 bg-blue-200 opacity-30 rounded-full blur-lg lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"></span>
                         <svg
                           aria-hidden="true"
                           focusable="false"
@@ -156,7 +137,7 @@ export default function Testimonials() {
                             fill="currentColor"
                             d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"
                           ></path>
-                        </svg>
+                        </svg>*/}
                         {testimonial.text}
                       </p>
                       <ul className="flex justify-center mb-6">

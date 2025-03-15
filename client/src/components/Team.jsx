@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { name: "Lucy", role: "Dental Assistant", image: "/images/dr_lucy.jpg" },
   { name: "Dr. Lelei", role: "Senior Dentist", image: "/images/dr_lelei.jpg" },
   { name: "Dr. Magara", role: "Dental Surgeon", image: "/images/dr_magara.jpg" },
+  { name: "Lucy", role: "Dental Assistant", image: "/images/dr_lucy.jpg" },
 ];
 
 const Team = () => {
@@ -37,7 +37,7 @@ const Team = () => {
         </motion.div>
 
         {/* Team Cards */}
-        <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-4 justify-center">
+        <div className="flex flex-wrap justify-center gap-8 mt-12">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}

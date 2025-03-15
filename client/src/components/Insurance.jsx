@@ -34,7 +34,7 @@ const Insurance = () => {
             </div>
             <h2 className="max-w-md mb-6 font-sans text-2xl md:text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
-                <svg
+                {/*<svg
                   viewBox="0 0 52 24"
                   fill="currentColor"
                   className="absolute top-0 left-2 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
@@ -55,7 +55,7 @@ const Insurance = () => {
                     width="52"
                     height="24"
                   />
-                </svg>
+                </svg>*/}
                 <span className="relative">We </span>
               </span>{" "}
               work with <span className="text-blue-500">Insurance</span>{" "}

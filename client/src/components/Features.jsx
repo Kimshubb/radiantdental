@@ -84,12 +84,12 @@ const Features = () => {
                 </h6>
                 <p className="mb-3 text-sm text-gray-700">{feature.description}</p>
               </div>
-              <a
+              {/*<a
                 href="/"
                 className="inline-flex items-center font-semibold transition-colors duration-200 text-blue-600 hover:text-blue-800"
               >
                 Learn more
-              </a>
+              </a>*/}
             </motion.div>
           ))}
         </div>

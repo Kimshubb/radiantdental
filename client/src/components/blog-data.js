@@ -15,7 +15,7 @@ export const blogPosts = [
       title: "Is Teeth Whitening Safe? What You Need to Know",
       excerpt: "Many people want a whiter smile, but is it safe? Find out the best and safest teeth whitening methods.",
       date: "March 5, 2025",
-      image: "/images/teethwhite.jpg",
+      image: "/images/whitesmile.jpg",
       content:
         "Teeth whitening is generally safe when done correctly. However, overuse of bleaching products can weaken enamel and cause sensitivity. Professional treatments at your dentist's office are the safest option, as they're customized to your specific needs. At-home whitening kits prescribed by your dentist offer a good balance of effectiveness and safety. Over-the-counter products can be effective for mild staining but follow instructions carefully. Natural methods like baking soda or hydrogen peroxide should be used with caution.",
       category: "Teeth Whitening"
@@ -44,7 +44,7 @@ export const blogPosts = [
       excerpt: "Stay informed about cutting-edge technologies that are transforming the field of dentistry.",
       date: "February 15, 2025",
       content: "Dental technology continues to evolve rapidly, offering patients more comfortable, efficient, and effective treatment options. Digital X-rays reduce radiation exposure while providing clearer images. CAD/CAM technology allows for same-day crowns and restorations. Laser dentistry enables more precise treatment with less pain and faster healing. 3D printing is revolutionizing the creation of dental models, surgical guides, and even temporary restorations. Intraoral cameras help patients better understand their oral health by showing them detailed images of their teeth and gums.",
-      image: "/images/dental-tech.jpg",
+      image: "/images/chance.png",
       category: "Dental Technology"
     },
   ];
