@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import emailjs from '@emailjs/browser';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -17,10 +16,10 @@ import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
 import BlogPost from "./components/BlogPosts"; 
+import TypebotChat from "./components/TypebotChat"; 
 
 export default function App() {
   useEffect(() => {
-    // ✅ Ensure the environment variable is used correctly
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     if (!publicKey) {
@@ -36,7 +35,7 @@ export default function App() {
     <Router>
       <Navbar />
       <Routes>
-        {/* Home Page (Keeps all original sections) */}
+        {/* Home Page */}
         <Route
           path="/"
           element={
@@ -50,30 +49,33 @@ export default function App() {
               <FAQs />
               <Contact />
               <Footer />
+              <TypebotChat /> 
             </>
           }
         />
 
-        {/* Blog Page (Now includes Contact & Footer) */}
+        {/* Blog Page */}
         <Route
           path="/blog"
           element={
             <>
               <Blog />
-              <Contact />  {/* ✅ Contact form for Blog Page */}
-              <Footer />   {/* ✅ Footer for Blog Page */}
+              <Contact />
+              <Footer />
+              <TypebotChat />  
             </>
           }
         />
 
-        {/* Individual Blog Post Page (includes Contact & Footer) */}
+        {/* Individual Blog Post Page */}
         <Route
           path="/blog/:id"
           element={
             <>
               <BlogPost />
-              <Contact />  {/* ✅ Contact form for Blog Post Page */}
-              <Footer />   {/* ✅ Footer for Blog Post Page */}
+              <Contact />
+              <Footer />
+              <TypebotChat />  
             </>
           }
         />
