@@ -25,42 +25,34 @@ const Contact = () => {
   
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    console.log("ServiceId", serviceId);
-    console.log("PublicKey", publicKey);
-    const formData = new FormData(form.current);
-    const formValues = Object.fromEntries(formData.entries());
-  
-    const adminEmail = "radiantdental7@gmail.com";
-  
-    // EmailJS Template IDs
     const userTemplateId = import.meta.env.VITE_EMAILJS_USER_TEMPLATE_ID;
     const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
-    console.log("User Templateid", userTemplateId);
-    console.log("Admin Templateid", adminTemplateId);
 
-    Promise.all([
-      // Send to User
-      emailjs.send(serviceId, userTemplateId, { 
-        ...formValues, 
-        recipient_email: formValues.user_email // User's email
-      }, publicKey),
+    console.log("Sending email with:", { serviceId, userTemplateId, adminTemplateId, publicKey });
   
-      // Send to Admin
-      emailjs.send(serviceId, adminTemplateId, { 
-        ...formValues, 
-        recipient_email: adminEmail // Admin's email
-      }, publicKey),
+    // Prevent sending if any key is missing
+    if (!serviceId || !userTemplateId || !adminTemplateId || !publicKey) {
+      console.error("Missing EmailJS credentials!");
+      setError("Email service is temporarily unavailable. Please try again later.");
+      setIsLoading(false);
+      return;
+    }
+  
+    console.log("Sending email with:", { serviceId, userTemplateId, adminTemplateId, publicKey });
+  
+    const formData = new FormData(form.current);
+    const formValues = Object.fromEntries(formData.entries());
+    const adminEmail = "radiantdental7@gmail.com";
+  
+    Promise.all([
+      emailjs.send(serviceId, userTemplateId, { ...formValues, recipient_email: formValues.user_email }, publicKey),
+      emailjs.send(serviceId, adminTemplateId, { ...formValues, recipient_email: adminEmail }, publicKey),
     ])
       .then(() => {
-        console.log("Emails sent successfully");
         setIsSent(true);
         setIsLoading(false);
         form.current.reset();
-  
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          setIsSent(false);
-        }, 5000);
+        setTimeout(() => setIsSent(false), 5000);
       })
       .catch((error) => {
         console.error("Email sending failed:", error.text);
@@ -68,6 +60,7 @@ const Contact = () => {
         setIsLoading(false);
       });
   };
+  
   
   return (
     <div className="max-w-screen-lg mx-auto p-2">
