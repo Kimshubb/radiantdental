@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const services = [
   { id: 1, name: "Teeth Cleaning & Whitening", image: "/images/guywhite.jpg" },
-  { id: 2, name: "Dental Crown & Bridge", image: "/images/dentalbridge.jpg" },
+  { id: 2, name: "Dental Crown & Bridge", image: "/images/finalbridge.jpg" },
   { id: 3, name: "Composite Filling", image: "/images/filling.jpg" },
   { id: 4, name: "Tooth Extraction", image: "/images/tooth-extraction.jpg" },
   { id: 5, name: "Orthodontic Treatment", image: "/images/braces.jpg" },

@@ -1,86 +1,45 @@
 import React from "react";
 import { Fade } from "react-awesome-reveal";
-/*import JUBILEE from "./Images/insurance/jubilee-logo.png";
-import AAR from "./Images/insurance/aar.png";
-import CIC from "./Images/insurance/cic.png";
-import APA from "./Images/insurance/apa logo.png";
-import MADISON from "./Images/insurance/madison.png";
-import BRITAM from "./Images/insurance/britam.png";
-import ORIENT from "./Images/insurance/orient.png";
-import SANLAM from "./Images/insurance/sanlam.png";
-import { Fade } from "react-awesome-reveal";
 
 const insuranceLogos = [
-  "/images/insurance/jubilee-logo.png",
-  "/images/insurance/aar.png",
-  "/images/insurance/cic.png",
-  "/images/insurance/apa logo.png",
-  "/images/insurance/madison.png",
-  "/images/insurance/britam.png",
-  "/images/insurance/orient.png",
-  "/images/insurance/sanlam.png",
-];*/
+  { src: "/images/cigna.png", alt: "Cigna" },
+  { src: "/images/britam.png", alt: "Britam" },
+  { src: "/images/uap.jpg", alt: "UAP" },
+  { src: "/images/cic.png", alt: "CIC" },
+];
 
 const Insurance = () => {
   return (
-    <section className="mt-16 " id="insurance">
-      <header class="">
+    <section className="mt-16" id="insurance">
+      <header>
         <Fade>
-          <div className="max-w-xl mb-10 mx-4 md:mx-auto  sm:text-center lg:max-w-2xl md:mb-12">
-            <div>
-              <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                insurance
-              </p>
-            </div>
+          <div className="max-w-xl mb-10 mx-4 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              insurance
+            </p>
             <h2 className="max-w-md mb-6 font-sans text-2xl md:text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
-                {/*<svg
-                  viewBox="0 0 52 24"
-                  fill="currentColor"
-                  className="absolute top-0 left-2 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-                >
-                  <defs>
-                    <pattern
-                      id="18302e52-9e2a-4c8e-9550-0cbb21b38e55"
-                      x="0"
-                      y="0"
-                      width=".135"
-                      height=".30"
-                    >
-                      <circle cx="1" cy="1" r=".7" />
-                    </pattern>
-                  </defs>
-                  <rect
-                    fill="url(#18302e52-9e2a-4c8e-9550-0cbb21b38e55)"
-                    width="52"
-                    height="24"
-                  />
-                </svg>*/}
                 <span className="relative">We </span>
               </span>{" "}
               work with <span className="text-blue-500">Insurance</span>{" "}
               companies for your coverage
             </h2>
-
-            <p class="max-w-[40rem] text-md mx-auto mt-4 text-gray-500"></p>
           </div>
         </Fade>
       </header>
-      <div className="slider flex flex-wrap justify-center items-center shadow-md opacity-[100%] mx-auto overflow-hidden relative space-x-4 p-4">
-        <div className="slide h-24 w-64 flex items-center justify-center">
-          <img src="/images/cigna.png" className="object-contain" height="100" width="250" alt="cigna" />
-        </div>
-        <div className="slide h-24 w-64 flex items-center justify-center">
-          <img src="/images/britam.png" height="100" width="250" alt="Britam" />
-        </div>
-        <div className="slide h-24 w-64 flex items-center justify-center">
-          <img src="/images/uap.jpg" height="100" width="250" alt="uap" />
-        </div>
-        <div className="slide h-24 w-64 flex items-center justify-center">
-          <img src="/images/cic.png" height="100" width="250" alt="CIC" />
-        </div>
-      </div>
 
+      {/* Logo Grid for Small Screens & Flex for Larger Screens */}
+      <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 p-4">
+        {insuranceLogos.map((logo, index) => (
+          <div key={index} className="w-40 sm:w-48 md:w-56 lg:w-64 flex items-center justify-center">
+            <img
+              src={logo.src}
+              className="object-contain max-w-full h-auto"
+              alt={logo.alt}
+            />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
