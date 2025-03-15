@@ -20,7 +20,16 @@ import BlogPost from "./components/BlogPosts";
 
 export default function App() {
   useEffect(() => {
-    emailjs.init("import.meta.env.VITE_EMAILJS_PUBLIC_KEY");
+    // ✅ Ensure the environment variable is used correctly
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!publicKey) {
+      console.error("Missing EmailJS Public Key");
+      return;
+    }
+
+    emailjs.init(publicKey);
+    console.log("EmailJS initialized with:", publicKey);
   }, []);
   
   return (
