@@ -25,7 +25,7 @@ const Contact = () => {
   
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    
+    console.log(serviceId, publicKey);
     const formData = new FormData(form.current);
     const formValues = Object.fromEntries(formData.entries());
   
@@ -34,7 +34,8 @@ const Contact = () => {
     // EmailJS Template IDs
     const userTemplateId = import.meta.env.VITE_EMAILJS_USER_TEMPLATE_ID;
     const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
-  
+    console.log(userTemplateId, adminTemplateId);
+    
     Promise.all([
       // Send to User
       emailjs.send(serviceId, userTemplateId, { 
