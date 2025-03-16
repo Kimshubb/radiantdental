@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
 import BlogPost from "./components/BlogPosts"; 
-import TypebotChat from "./components/TypebotChat"; 
+//import TypebotChat from "./components/TypebotChat"; 
 
 export default function App() {
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function App() {
               <FAQs />
               <Contact />
               <Footer />
-              <TypebotChat /> 
+              {/*<TypebotChat /> */}
             </>
           }
         />
@@ -62,7 +62,7 @@ export default function App() {
               <Blog />
               <Contact />
               <Footer />
-              <TypebotChat />  
+              {/*<TypebotChat />  */}
             </>
           }
         />
@@ -75,7 +75,7 @@ export default function App() {
               <BlogPost />
               <Contact />
               <Footer />
-              <TypebotChat />  
+             {/* <TypebotChat /> */} 
             </>
           }
         />
