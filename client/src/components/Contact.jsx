@@ -82,14 +82,14 @@ const Contact = () => {
           </p>
           <p className="font-normal">
             Monday - Friday:{" "}
-            <span className="font-semibold">08:00 AM - 18:00 PM</span>
+            <span className="font-semibold">8:00 AM - 6:00 PM</span>
           </p>
           <p className="font-normal">
-            Saturday: <span className="font-semibold">08:00 AM- 16:00 PM</span>
+            Saturday: <span className="font-semibold">8:00 AM- 4:00 PM</span>
           </p>
           <p className="mb-8">
             {" "}
-            Sunday :<span className="font-semibold"> 08:00 AM - 13:00 PM</span>
+            Sunday :<span className="font-semibold"> 08:00 AM - 1:00 PM</span>
           </p>
 
           <p className="mt-3 flex items-center">
