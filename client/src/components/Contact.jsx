@@ -82,14 +82,14 @@ const Contact = () => {
           </p>
           <p className="font-normal">
             Monday - Friday:{" "}
-            <span className="font-semibold">08:00 - 18:00</span>
+            <span className="font-semibold">08:00 AM - 18:00 PM</span>
           </p>
           <p className="font-normal">
-            Saturday: <span className="font-semibold">8:00 - 16:00</span>
+            Saturday: <span className="font-semibold">08:00 AM- 16:00 PM</span>
           </p>
           <p className="mb-8">
             {" "}
-            Sunday :<span className="font-semibold"> 8:00 - 1:00 pm</span>
+            Sunday :<span className="font-semibold"> 08:00 AM - 13:00 PM</span>
           </p>
 
           <p className="mt-3 flex items-center">
@@ -131,12 +131,12 @@ const Contact = () => {
             <span>info@radiantdental.co.ke</span>
           </p>
 
-          <p className="flex items-center">
+          <p className="flex items-center gap-2 sm:gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="#3b82f6"
-              className="w-5 h-5 mr-2 sm:mr-3"
+              className="w-5 h-5 flex-shrink-0"
             >
               <path
                 fillRule="evenodd"
@@ -144,7 +144,7 @@ const Contact = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Jubilee Exchange House, Mama Ngina</span>
+            <span className="text-gray-700">Room 246, Jubilee Exchange House, Mama Ngina Street</span>
           </p>
         </div>
 

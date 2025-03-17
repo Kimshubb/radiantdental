@@ -51,21 +51,20 @@ export default function Testimonials() {
         >
           <div className="max-w-xl mb-0 mx-auto sm:text-center lg:max-w-2xl md:mb-12">
             <div>
-              <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                Testimonials
+              <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-200">
+                What Our Patients Say
               </p>
             </div>
             <h2 className="max-w-lg mb-0 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
-                
-                <span className="relative">Read </span>
+                <span className="relative">Real</span>
               </span>{" "}
-              reviews from Our{" "}
-              <span className="text-blue-500 relative">Patients</span>
+              Experiences,{" "}
+              <span className="text-blue-500 relative">Brighter Smiles</span>
             </h2>
 
             <p className="max-w-[40rem] text-md mx-auto mt-4 text-gray-500">
-              Discover what our patients are saying about their dental experiences with us.
+              Hear from our happy patients about their journey to healthier, more confident smiles.
             </p>
           </div>
         </motion.header>

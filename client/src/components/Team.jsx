@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { name: "Dr. Lelei", role: "Senior Dentist", image: "/images/dr_lelei.jpg" },
+  { name: "Dr. Lelei", role: "Senior Dental Surgeon", image: "/images/dr_lelei.jpg" },
   { name: "Dr. Magara", role: "Dental Surgeon", image: "/images/dr_magara.jpg" },
   { name: "Lucy", role: "Dental Assistant", image: "/images/dr_lucy.jpg" },
 ];
