@@ -28,7 +28,7 @@ export default function App() {
     }
 
     emailjs.init(publicKey);
-    console.log("EmailJS initialized with:", publicKey);
+    console.log("EmailJS initialized with Public Key");
   }, []);
   
   return (

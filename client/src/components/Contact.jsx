@@ -38,7 +38,7 @@ const Contact = () => {
       return;
     }
   
-    console.log("Sending email with:", { serviceId, userTemplateId, adminTemplateId, publicKey });
+    //console.log("Sending email with:", { serviceId, userTemplateId, adminTemplateId, publicKey });
   
     const formData = new FormData(form.current);
     const formValues = Object.fromEntries(formData.entries());
@@ -89,7 +89,7 @@ const Contact = () => {
           </p>
           <p className="mb-8">
             {" "}
-            Sunday :<span className="font-semibold"> 08:00 AM - 1:00 PM</span>
+            Sunday :<span className="font-semibold"> 8:00 AM - 1:00 PM</span>
           </p>
 
           <p className="mt-3 flex items-center">
@@ -144,7 +144,7 @@ const Contact = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-gray-700">Room 246, Jubilee Exchange House, Mama Ngina Street</span>
+            <span className="text-gray-900">Room 246, Jubilee Exchange House, Mama Ngina Street</span>
           </p>
         </div>
 

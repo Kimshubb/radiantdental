@@ -163,7 +163,7 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  X-rays
+                  Root Canal Treatment
                 </a>
               </li>
               <li>
@@ -172,7 +172,7 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  Filling
+                  Composite Filling
                 </a>
               </li>
               <li>
@@ -181,7 +181,7 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  Implants
+                  Tooth Cleaning & Whitening
                 </a>
               </li>
               <li>
@@ -190,7 +190,7 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  Cleaning
+                  Tooth Extraction
                 </a>
               </li>
               <li>
@@ -199,7 +199,16 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  Restoration
+                  Crowns and Bridges
+                </a>
+              </li>
+              <li>
+                <a
+                  rel="noreferrer noopener"
+                  className="hover:underline hover:text-gray-300"
+                  href="/"
+                >
+                  Orthodontic Treatment
                 </a>
               </li>
 
@@ -209,7 +218,16 @@ const Footer = () => {
                   className="hover:underline hover:text-gray-300"
                   href="/"
                 >
-                  Consultation
+                  Dental Check ups & Consultation
+                </a>
+              </li>
+              <li>
+                <a
+                  rel="noreferrer noopener"
+                  className="hover:underline hover:text-gray-300"
+                  href="/"
+                >
+                  X-Rays
                 </a>
               </li>
             </ul>
