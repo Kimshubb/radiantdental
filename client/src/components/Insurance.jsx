@@ -18,13 +18,19 @@ const Insurance = () => {
             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-200">
               Insurance
             </p>
-            <h2 className="max-w-md mb-6 font-sans text-2xl md:text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+            <h2 className="max-w-md mb-4 font-sans text-2xl md:text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block">
                 <span className="relative">We </span>
               </span>{" "}
               work with <span className="text-blue-500">Insurance</span>{" "}
               companies for your coverage
             </h2>
+
+            {/* Short Descriptive Text Listing Insurance Providers */}
+            <p className="text-gray-600 text-md md:text-lg text-center mx-auto max-w-2xl">
+              At Radiant Dental & Orthodontic Centre, we accept a wide range of insurance providers to make your dental care more accessible.  
+              We proudly work with <span className="text-blue-500 font-bold">Cigna, Britam, UAP, CIC & Bupa</span> to ensure dental health is accessible and stress free.
+            </p>
           </div>
         </Fade>
       </header>
