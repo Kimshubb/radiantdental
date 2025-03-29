@@ -1,57 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+
+import { blogPosts } from "./blog-data.js"; 
 
 const BlogCarousel = () => {
-  // Sample blog data - replace with your actual blog data
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Importance of Regular Dental Check-ups",
-      excerpt: "Discover why bi-annual dental visits are crucial for maintaining optimal oral health and preventing serious issues.",
-      image: "/images/checkup.jpg",
-      date: "March 5, 2025",
-      author: "Admin"
-    },
-    {
-      id: 2,
-      title: "Tips for Proper Brushing Techniques",
-      excerpt: "Learn the correct way to brush your teeth to ensure thorough cleaning and prevent gum disease.",
-      image: "/images/brush.jpg",
-      date: "February 20, 2025",
-      author: "Admin"
-    },
-    {
-      id: 3,
-      title: "Understanding Teeth Whitening Options",
-      excerpt: "Explore various teeth whitening methods and discover which one might be best suited for your needs.",
-      image: "/images/teethwhite.jpg",
-      date: "January 15, 2025",
-      author: "Admin"
-    },
-    {
-      id: 4,
-      title: "Dental Care for Children: A Parent's Guide",
-      excerpt: "Essential tips for helping your children develop good oral hygiene habits from an early age.",
-      image: "/images/childrendental.jpg",
-      date: "December 10, 2024",
-      author: "Admin"
-    }
-  ];
-
   // State for carousel control
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsToShow, setCardsToShow] = useState(3);
 
-  // Number of cards to display at once (responsive)
-  const getCardsToShow = () => {
-    if (typeof window !== "undefined") {
-      if (window.innerWidth >= 1024) return 3; // Desktop
-      if (window.innerWidth >= 640) return 2; // Tablet
-      return 1; // Mobile
-    }
-    return 3; // Default for SSR
-  };
+  // Update cards to show based on window size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsToShow(3); // Desktop
+      } else if (window.innerWidth >= 640) {
+        setCardsToShow(2); // Tablet
+      } else {
+        setCardsToShow(1); // Mobile
+      }
+    };
 
-  const cardsToShow = getCardsToShow();
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize); // Cleanup
+  }, []);
 
   // Navigation handlers
   const handlePrev = () => {
@@ -67,159 +41,105 @@ const BlogCarousel = () => {
   };
 
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-        <div>
-          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Our Blog
-          </p>
-        </div>
-        <Fade>
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-            <span className="relative inline-block">
-              <svg
-                viewBox="0 0 52 24"
-                fill="currentColor"
-                className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-              >
-                <defs>
-                  <pattern
-                    id="blog-pattern"
-                    x="0"
-                    y="0"
-                    width=".135"
-                    height=".30"
-                  >
-                    <circle cx="1" cy="1" r=".7" />
-                  </pattern>
-                </defs>
-                <rect
-                  fill="url(#blog-pattern)"
-                  width="52"
-                  height="24"
-                />
-              </svg>
-              <span className="relative">Latest </span>
-            </span>{" "}
-            Dental Health Insights
-          </h2>
-        </Fade>
-        <Fade>
-          <p className="text-base text-gray-700 md:text-lg">
-            Stay informed with the latest dental health tips, treatments, and innovations through our expert articles.
-          </p>
-        </Fade>
-      </div>
+    <section id="blog-preview" className="bg-white">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": blogPosts.map((post, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "BlogPosting",
+                "headline": post.title,
+                "description": post.excerpt,
+                "image": `https://radiantdental.co.ke.com${post.image}`,
+                "author": {
+                  "@type": "Person",
+                  "name": "Admin"
+                },
+                "datePublished": post.date,
+                "url": `https://radiantdental.co.ke/blog/${post.slug}`
+              }
+            }))
+          })}
+        </script>
+      </Helmet>
 
-      {/* Carousel Container */}
-      <div className="relative">
-        {/* Carousel Navigation Buttons */}
-        <div className="absolute inset-y-0 left-0 z-10 flex items-center">
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+          <Fade>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Latest <span className="text-blue-600">Dental Health Insights</span>
+            </h2>
+          </Fade>
+          <Fade>
+            <p className="text-base text-gray-700 md:text-lg">
+              Stay informed with the latest dental health tips, treatments, and innovations through our expert articles.
+            </p>
+          </Fade>
+        </div>
+
+        {/* Carousel */}
+        <div className="relative">
+          {/* Left Button */}
           <button
             onClick={handlePrev}
-            className="p-2 bg-white rounded-full shadow-md focus:outline-none"
+            className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md focus:outline-none"
+            aria-label="Previous articles"
           >
-            <svg
-              className="w-6 h-6 text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
+            ❮
           </button>
-        </div>
 
-        <div className="overflow-hidden">
-          <div
-            className="flex transition-transform duration-300 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
-              width: `${(blogPosts.length * 100) / cardsToShow}%`,
-            }}
-          >
-            {blogPosts.map((post) => (
-              <div
-                key={post.id}
-                className="px-2"
-                style={{ width: `${100 / blogPosts.length}%` }}
-              >
-                <Fade>
-                  <div className="flex flex-col h-full overflow-hidden border rounded-lg shadow-sm">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="object-cover w-full h-48"
-                        src={post.image}
-                        alt={post.title}
-                      />
-                    </div>
-                    <div className="flex flex-col justify-between flex-1 p-6 bg-white">
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-blue-600">
-                          <span>{post.date}</span> • <span>{post.author}</span>
-                        </p>
-                        <a href={`/blog/${post.id}`} className="block mt-2">
-                          <h3 className="text-xl font-semibold text-gray-900">
-                            {post.title}
-                          </h3>
-                          <p className="mt-3 text-base text-gray-500">
-                            {post.excerpt}
-                          </p>
-                        </a>
-                      </div>
-                      <div className="mt-6">
-                        <a
-                          href={`/blog/${post.id}`}
-                          className="inline-flex items-center font-semibold transition-colors duration-200 text-blue-800 hover:text-blue-500"
-                        >
-                          Read more
-                        </a>
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
+                width: `${(blogPosts.length * 100) / cardsToShow}%`,
+              }}
+            >
+              {blogPosts.map((post) => (
+                <article key={post.id} className="px-2" style={{ width: `${100 / blogPosts.length}%` }}>
+                  <Fade>
+                    <div className="flex flex-col h-full overflow-hidden border rounded-lg shadow-sm">
+                      <img className="object-cover w-full h-48" src={post.image} alt={post.title} />
+                      <div className="flex flex-col justify-between flex-1 p-6 bg-white">
+                        <p className="text-sm text-blue-600">{post.date}</p>
+                        <Link to={`/blog/${post.slug}`} className="block mt-2">
+                          <h3 className="text-xl font-semibold text-gray-900">{post.title}</h3>
+                          <p className="mt-3 text-base text-gray-500">{post.excerpt}</p>
+                        </Link>
+                        <div className="mt-6">
+                          <Link to={`/blog/${post.slug}`} className="text-blue-600 hover:underline">Read more</Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Fade>
-              </div>
-            ))}
+                  </Fade>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="absolute inset-y-0 right-0 z-10 flex items-center">
+          {/* Right Button */}
           <button
             onClick={handleNext}
-            className="p-2 bg-white rounded-full shadow-md focus:outline-none"
+            className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md focus:outline-none"
+            aria-label="Next articles"
           >
-            <svg
-              className="w-6 h-6 text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+            ❯
           </button>
         </div>
-      </div>
 
-      {/* View All Button */}
-      <div className="mt-10 text-center">
-        <a
-          href="/blog"
-          className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          View All Articles
-        </a>
+        {/* View All Button */}
+        <div className="mt-10 text-center">
+          <Link to="/blog" className="px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700">
+            View All Articles
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

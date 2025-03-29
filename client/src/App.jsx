@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async"; // Import HelmetProvider
 import emailjs from '@emailjs/browser';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -15,8 +16,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
-import BlogPost from "./components/BlogPosts"; 
-//import TypebotChat from "./components/TypebotChat"; 
+import BlogPost from "./components/BlogPosts";
 
 export default function App() {
   useEffect(() => {
@@ -30,56 +30,56 @@ export default function App() {
     emailjs.init(publicKey);
     console.log("EmailJS initialized with Public Key");
   }, []);
-  
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        {/* Home Page */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              <Services />
-              <Insurance />
-              <Features />
-              <Team />
-              <Testimonials />
-              <FAQs />
-              <Contact />
-              <Footer />
-              {/*<TypebotChat /> */}
-            </>
-          }
-        />
+    <HelmetProvider>
+      {/* Wrap your App in HelmetProvider */}
+      <Router>
+        <Navbar />
+        <Routes>
+          {/* Home Page */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <Services />
+                <Insurance />
+                <Features />
+                <Team />
+                <Testimonials />
+                <FAQs />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
 
-        {/* Blog Page */}
-        <Route
-          path="/blog"
-          element={
-            <>
-              <Blog />
-              <Contact />
-              <Footer />
-              {/*<TypebotChat />  */}
-            </>
-          }
-        />
+          {/* Blog Page */}
+          <Route
+            path="/blog"
+            element={
+              <>
+                <Blog />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
 
-        {/* Individual Blog Post Page */}
-        <Route
-          path="/blog/:id"
-          element={
-            <>
-              <BlogPost />
-              <Contact />
-              <Footer />
-             {/* <TypebotChat /> */} 
-            </>
-          }
-        />
-      </Routes>
-    </Router>
+          {/* Individual Blog Post Page */}
+          <Route
+            path="/blog/:id"
+            element={
+              <>
+                <BlogPost />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 }

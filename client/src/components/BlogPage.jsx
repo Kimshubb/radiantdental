@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Import the blog posts from the separate file
 import { blogPosts } from "./blog-data.js";
@@ -13,6 +14,15 @@ import { blogPosts } from "./blog-data.js";
 const Blog = () => {
   return (
     <section className="bg-gray-50 py-16 mt-8 mb-16">
+      <Helmet>
+        <title>Dental Blog | Latest Oral Health Tips & News</title>
+        <meta
+          name="description"
+          content="Stay updated with expert dental care tips, treatments, and technology advancements to keep your smile healthy and bright."
+        />
+        <meta name="keywords" content="dental blog, oral health, teeth whitening, dentist tips, dental technology" />
+      </Helmet>
+
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl font-bold text-center text-blue-900 mb-10">Dental Blog</h1>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -29,30 +39,33 @@ const Blog = () => {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 2 },
             }}
-            navigation={{
-              nextEl: ".custom-next",
-              prevEl: ".custom-prev",
-            }}
+            navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 7000, disableOnInteraction: false }}
             loop={true}
+            preloadImages={false}
             className="w-full mb-10"
           >
             {blogPosts.map((post) => (
               <SwiperSlide key={post.id} className="flex justify-center py-4">
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-lg transition-transform hover:scale-105 duration-300 min-h-[450px] flex flex-col">
-                  {/* Consistent Image Height */}
-                  <img src={post.image} alt={post.title} className="w-full h-56 object-cover" />
+                  {/* Consistent Image Height with Lazy Loading */}
+                  <img
+                    src={post.image}
+                    alt={`Blog post: ${post.title} - ${post.date}`}
+                    className="w-full h-56 object-cover"
+                    loading="lazy"
+                  />
 
-                  {/* Content Wrapper with Fixed Height */}
+                  {/* Content Wrapper */}
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <h2 className="text-2xl font-semibold text-blue-800 mb-2">{post.title}</h2>
+                      <h2 className="text-2xl font-semibold text-blue-800 mb-2">{post.title} | {post.category}</h2>
                       <p className="text-gray-500 text-sm mb-3">{post.date}</p>
                       <p className="text-gray-700">{post.excerpt}</p>
                     </div>
 
-                    {/* CTA Buttons (Always at the Bottom) */}
+                    {/* CTA Buttons */}
                     <div className="flex justify-between items-center mt-4">
                       <Link
                         to={`/blog/${post.id}`}
@@ -60,19 +73,13 @@ const Blog = () => {
                       >
                         Read More
                       </Link>
-                      {/*
-                      <Link
-                        to="/#contact"
-                        className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition shadow-md"
-                      >
-                        Book an Appointment
-                      </Link>*/}
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+
           {/* Custom Navigation Arrows */}
           <button className="custom-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-blue-600 p-3 rounded-full shadow-md hover:bg-blue-100 transition">
             <ChevronLeft size={18} />
@@ -86,7 +93,7 @@ const Blog = () => {
         <div className="text-center">
           <Link
             to="/blog"
-            className="inline-block border-2 border-blue-600 text-blue-600 font-medium py-2 px-6 rounded-md hover:bg-blue-50 transition"
+            className="inline-block border-2 border-blue-600 text-blue-600 text-lg font-medium py-3 px-6 rounded-md hover:bg-blue-50 transition"
           >
             View All Blog Posts
           </Link>
