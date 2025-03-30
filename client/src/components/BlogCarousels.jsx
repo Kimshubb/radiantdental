@@ -134,7 +134,7 @@ const BlogCarousel = () => {
 
         {/* View All Button */}
         <div className="mt-10 text-center">
-          <Link to="/blog" className="px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700">
+          <Link to="/blog/1" className="px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700">
             View All Articles
           </Link>
         </div>
