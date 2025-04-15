@@ -39,7 +39,7 @@ const FAQs = () => {
   return (
     <section className="bg-white pb-7 text-slate-900" id="faqs">
       <Helmet>
-        <title>Frequently Asked Questions | Radiant Dental & Orthodontic Centre</title>
+        <title>Radiant Dental & Orthodontic Centre | Creating Brighter Smiles</title>
         <meta name="description" content="Find answers to common questions about dental services, procedures, and appointments at Radiant Dental & Orthodontic Centre in Nairobi, Kenya." />
         <meta name="keywords" content="dental FAQs, dental questions, tooth extraction, dental appointments, Nairobi dentist" />
         <script type="application/ld+json">
