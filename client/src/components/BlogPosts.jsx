@@ -60,11 +60,48 @@ const BlogPost = () => {
       <Helmet>
         <title>{post.title} | Radiant Dental Blog</title>
         <meta name="description" content={post.excerpt} />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph Tags */}
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.image} />
         <meta property="og:url" content={`https://radiantdental.co.ke/blog/${post.id}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={post.image} />
+
+        {/* Structured Data with JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": post.image,
+            "author": {
+              "@type": "Organization",
+              "name": "Radiant Dental"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Radiant Dental",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://radiantdental.co.ke/logo.png"
+              }
+            },
+            "datePublished": post.date,
+            "mainEntityOfPage": `https://radiantdental.co.ke/blog/${post.id}`
+          })}
+        </script>
       </Helmet>
+
 
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8">
