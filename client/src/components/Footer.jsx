@@ -26,8 +26,8 @@ const Footer = () => {
     }
 
     // ConvertKit API key and form ID
-    const API_KEY = "YW9GegPZXKzE53M7vqmLvw";
-    const FORM_ID = "5258337";
+    const API_KEY = "YW9GegPZXKzE53M7GJFLvw";
+    const FORM_ID = "52567537";
 
     setLoading(true);
 
