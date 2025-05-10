@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async"; // Import HelmetProvider
 import emailjs from '@emailjs/browser';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -17,8 +17,10 @@ import Footer from "./components/Footer";
 import Features from "./components/Features";
 import Blog from "./components/BlogPage";
 import BlogPost from "./components/BlogPosts";
+import AccessRestricted from "./components/AccessRestricted";
 
 export default function App() {
+  const [showGate, setShowGate] = useState(true);
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
@@ -30,6 +32,16 @@ export default function App() {
     emailjs.init(publicKey);
     console.log("EmailJS initialized with Public Key");
   }, []);
+  
+  if (showGate) {
+    return (
+      <AccessRestricted
+        onContinue={() => {
+          setShowGate(false);
+        }}
+      />
+    );
+  }
 
   return (
     <HelmetProvider>
