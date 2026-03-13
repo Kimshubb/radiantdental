@@ -20,7 +20,7 @@ import BlogPost from "./components/BlogPosts";
 import AccessRestricted from "./components/AccessRestricted";
 
 export default function App() {
-  const [showGate, setShowGate] = useState(true);
+  const [showGate, setShowGate] = useState(false);
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 

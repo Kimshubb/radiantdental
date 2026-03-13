@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radiantdental-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radiantdental
+  template:
+    metadata:
+      labels:
+        app: radiantdental
+    spec:
+      containers:
+        - name: radiantdental
+          image: radiantdental
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
